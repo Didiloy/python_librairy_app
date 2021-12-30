@@ -1,17 +1,18 @@
 import requests
+import urllib.request
 import json
 from Auteur import Auteur
 from Livre import Livre
 
+#https://covers.openlibrary.org/b/olid/OL26855580M-M.jpg    cover link
+
+def downloadCovers(id):
+    url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
+    urllib.request.urlretrieve(url, f"./assets/img/{id}")
+
 def globalSearch(search):
     # Making a get request
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
-    #print(response.text)
-    # print response
-    #print(response)
-
-    # print json content
-    #print(response.json())
 
     fileToWrite = open('answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
@@ -19,19 +20,29 @@ def globalSearch(search):
     data = json.loads(response.text) #Transformer le texte en objet json
     i = 0
     liste_livre = []
+    hasCover = False
     for books in data['docs']:
         if i > 5:
             break
+        if 'cover_edition_key' in books and books['cover_edition_key'] != None:
+            hasCover = True
+            print(f"cover id : {books['cover_edition_key']}")
+            downloadCovers(books['cover_edition_key'])
+            
         if 'author_name' not in books or books['author_name'] == None or books['author_name'] == []:
             #print('Livre: ' + str(books['title']) + ' et pas d\'auteur')
             liste_livre.append(Livre(str(books['title'])))
             print(liste_livre[i].toString())
+            if hasCover:
+                liste_livre[i].setCoverID(str(books['cover_edition_key']))
             i += 1
         else:
             #print('Livre: ' + str(books['title']) + ' par l\'auteur ' + str(books['author_name'][-1]) )
             liste_livre.append(Livre(str(books['title'])))
             liste_livre[i].setAuthor(str(books['author_name'][-1]))
             print(liste_livre[i].toString())
+            if hasCover:
+                liste_livre[i].setCoverID(str(books['cover_edition_key']))
             i += 1
 
 

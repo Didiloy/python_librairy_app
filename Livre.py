@@ -6,6 +6,7 @@ class Livre:
         self.genre = None           # str
         self.editeur = None         # Editeur
         self.dateDeParution = None  # datetime
+        self.coverId = None         #string
 
     def setAuthor(self, author):
         self.auteur = author
@@ -21,6 +22,12 @@ class Livre:
 
     def setDateDeParution(self, dateDeParution):
         self.dateDeParution = dateDeParution
+
+    def setCoverID(self, coverId):
+        self.coverId = coverId
+
+    def getCoverID(self):
+        return self.coverId
 
     def getAuthor(self):
         return self.author
