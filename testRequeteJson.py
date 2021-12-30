@@ -2,7 +2,7 @@ import requests
 import urllib.request
 import json
 from Auteur import Auteur
-from Bibliothèque import Bibliotheque
+from Bibliotheque import Bibliotheque
 from Livre import Livre
 
 #https://covers.openlibrary.org/b/olid/OL26855580M-M.jpg    cover link
