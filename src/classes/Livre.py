@@ -45,4 +45,4 @@ class Livre:
         return self.dateDeParution
 
     def toString(self):
-        print(f" Titre : {self.titre}\n Auteur : {self.auteur}")
+        return (f" Titre : {self.titre}\n Auteur : {self.auteur}\n")

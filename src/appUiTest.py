@@ -12,7 +12,11 @@ from Auteur import Auteur
 from Livre import Livre
 
 def searchOpenLibrary():
+    #remettre le label a 0
+    searchUi.answerLabel.setText("")
+
     search = searchUi.lineEditSearch.text()
+    searchUi.lineEditSearch.setText("")
     # Making a get request
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
 
@@ -36,7 +40,6 @@ def searchOpenLibrary():
             liste_livre.append(Livre(str(books['title'])))
             #print(liste_livre[i].toString())
             texte = searchUi.answerLabel.text() + str(liste_livre[i].toString())
-            print(texte)
             searchUi.answerLabel.setText(texte)
             if hasCover:
                 liste_livre[i].setCoverID(str(books['cover_edition_key']))
@@ -47,7 +50,6 @@ def searchOpenLibrary():
             liste_livre[i].setAuthor(str(books['author_name'][-1]))
             #print(liste_livre[i].toString())
             texte = searchUi.answerLabel.text() + str(liste_livre[i].toString())
-            print(texte)
             searchUi.answerLabel.setText(texte)
             if hasCover:
                 liste_livre[i].setCoverID(str(books['cover_edition_key']))
