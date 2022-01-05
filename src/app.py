@@ -1,12 +1,18 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QFont
 import sys
+import os
+# dir = os.getcwd() #avoir le dossier dans lequel on est pour faciliter les imports
+# dirUi = dir + "ui/"
+# import sys
+# sys.path.append(dirUi)
+# import search
 
 class WelcomeWindow(QMainWindow):
     def __init__(self):
         super(WelcomeWindow, self).__init__()
-        self.setGeometry(0, 0, 1000, 1000)
+        self.setGeometry(0, 0, 1100, 700)
         self.setWindowTitle("Library App")
         self.initUI()
 

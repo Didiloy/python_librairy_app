@@ -1,21 +1,26 @@
 import requests
 import urllib.request
 import json
+import os
+dir = os.getcwd() #avoir le dossier dans lequel on est pour faciliter les imports
+classes = dir + "/src/classes/"
+import sys
+sys.path.append(classes)
 from Auteur import Auteur
-from Bibliotheque import Bibliotheque
+#from Bibliotheque import Bibliotheque
 from Livre import Livre
 
 #https://covers.openlibrary.org/b/olid/OL26855580M-M.jpg    cover link
 
 def downloadCovers(id):
     url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
-    urllib.request.urlretrieve(url, f"./assets/img/{id}")
+    urllib.request.urlretrieve(url, f"./assets/img/{id}") #télécharger l'image
 
 def globalSearch(search):
     # Making a get request
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
 
-    fileToWrite = open('answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
+    fileToWrite = open('src/answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text) #Transformer le texte en objet json
@@ -23,7 +28,7 @@ def globalSearch(search):
     liste_livre = []
     hasCover = False
     for books in data['docs']:
-        if i > 5:
+        if i >= 5:
             break
         if 'cover_edition_key' in books and books['cover_edition_key'] != None:
             hasCover = True
@@ -45,11 +50,12 @@ def globalSearch(search):
             if hasCover:
                 liste_livre[i].setCoverID(str(books['cover_edition_key']))
             i += 1
+        hasCover = False
 
 
 def authorSearch(search):
     response = requests.get(f'https://openlibrary.org/search/authors.json?q={search}&mode=everything')
-    fileToWrite = open('answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
+    fileToWrite = open('src/answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text) #Transformer le texte en objet json

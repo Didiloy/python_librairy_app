@@ -7,7 +7,7 @@ class Bibliotheque:
 
 
     def writeToJSONFile(self):
-        data = {}
+        data = {} #dictionnaire pour ecrire au format json
         data["livres"] = self.liste_livre
         data["auteurs"] = self.liste_auteur
         data["genres"] = self.liste_genre
