@@ -2,14 +2,9 @@ from PyQt5 import QtWidgets, uic
 import requests
 import urllib.request
 import json
-import os
-dir = os.getcwd() #avoir le dossier dans lequel on est pour faciliter les imports
-classes = dir + "/classes/"
-import sys
-sys.path.append(classes)
-print(sys.path)
-from Auteur import Auteur
-from Livre import Livre
+from classes.Auteur import Auteur
+from classes.Livre import Livre
+
 
 def searchOpenLibrary():
     #remettre le label a 0
