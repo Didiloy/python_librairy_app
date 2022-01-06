@@ -2,21 +2,23 @@ import requests
 import urllib.request
 import json
 import os
-from classes import Auteur
-from classes import Livre
-from ui import Ui_MainWindow
-import app
-ui = app.main_win.ui
-def globalSearch(search):
+from src.classes import Auteur
+from src.classes import Livre
+from src.ui import Ui_MainWindow
+import src.app
+
+
+def globalSearch(search, uiArg):
+    ui = uiArg
     # remettre le label a 0
     ui.answerLabel.setText("")
     search = ui.searchLineEdit.text()
-    ui.searchLineEdit.setText()
+    ui.searchLineEdit.setText("")
 
     # Making a get request
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
 
-    fileToWrite = open('answer.json', 'w+')  # Ecrire la reponse au format json dans un fichier json
+    fileToWrite = open('../answer.json', 'w+')  # Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text)  # Transformer le texte en objet json
@@ -42,7 +44,7 @@ def globalSearch(search):
             i += 1
         else:
             # print('Livre: ' + str(books['title']) + ' par l\'auteur ' + str(books['author_name'][-1]) )
-            liste_livre.append(Livre(str(books['title'])))
+            liste_livre.append(Livre.Livre(str(books['title'])))
             liste_livre[i].setAuthor(str(books['author_name'][-1]))
             # print(liste_livre[i].toString())
             texte = ui.answerLabel.text() + str(liste_livre[i].toString())

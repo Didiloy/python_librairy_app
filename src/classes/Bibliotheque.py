@@ -11,12 +11,12 @@ class Bibliotheque:
         data["livres"] = self.liste_livre
         data["auteurs"] = self.liste_auteur
         data["genres"] = self.liste_genre
-        filePathNameWExt = "./assets/database/bibliotheque.json"
+        filePathNameWExt = "../assets/database/bibliotheque.json"
         with open(filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
             
     def initBibliotheque(self):
-        fileToRead = open('./assets/database/bibliotheque.json', 'r') #lire si il y a deja des trucs dans la bibliotheque
+        fileToRead = open('../assets/database/bibliotheque.json', 'r') #lire si il y a deja des trucs dans la bibliotheque
         data = fileToRead.read()
         fileToRead.close()
         dataInJson = json.loads(data) #Transformer le texte en objet json
@@ -71,5 +71,3 @@ def main():
             bib.toString()
         elif choix == '6':
             boucle = False
-
-main()

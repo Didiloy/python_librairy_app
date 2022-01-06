@@ -16,4 +16,4 @@ class Auteur:
         self.dateDeNaissance = dateDeNaissance
 
     def toString(self):
-        print(f"Nom : {self.nom}\nDate de naissance : {self.dateDeNaissance}")
+        return f"Nom : {self.nom}\nDate de naissance : {self.dateDeNaissance}"

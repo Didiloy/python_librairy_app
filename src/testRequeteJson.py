@@ -10,13 +10,13 @@ from classes.Livre import Livre
 
 def downloadCovers(id):
     url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
-    urllib.request.urlretrieve(url, f"./assets/img/{id}") #télécharger l'image
+    urllib.request.urlretrieve(url, f"../assets/img/{id}") #télécharger l'image
 
 def globalSearch(search):
     # Making a get request
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
 
-    fileToWrite = open('src/answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
+    fileToWrite = open('answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text) #Transformer le texte en objet json
@@ -51,7 +51,7 @@ def globalSearch(search):
 
 def authorSearch(search):
     response = requests.get(f'https://openlibrary.org/search/authors.json?q={search}&mode=everything')
-    fileToWrite = open('src/answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
+    fileToWrite = open('answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text) #Transformer le texte en objet json
@@ -61,10 +61,11 @@ def authorSearch(search):
             break
         if 'birth_date' not in datas:
             auteur = Auteur(str(datas['name']))
-            auteur.toString()
+            print(auteur.toString())
         else:
             auteur = Auteur(str(datas['name']))
             auteur.setDateDeNaissance(str(datas['birth_date']))
+            print(auteur.toString())
         print(f"top work: {datas['top_work']}")
         i += 1
 
