@@ -2,13 +2,9 @@ import requests
 import urllib.request
 import json
 import os
-dir = os.getcwd() #avoir le dossier dans lequel on est pour faciliter les imports
-classes = dir + "/src/classes/"
-import sys
-sys.path.append(classes)
-from Auteur import Auteur
-#from Bibliotheque import Bibliotheque
-from Livre import Livre
+from classes.Auteur import Auteur
+from classes.Livre import Livre
+
 
 #https://covers.openlibrary.org/b/olid/OL26855580M-M.jpg    cover link
 
