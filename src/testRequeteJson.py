@@ -4,7 +4,10 @@ import json
 import os
 from classes.Auteur import Auteur
 from classes.Livre import Livre
+from classes.Bibliotheque import Bibliotheque
 
+bib = Bibliotheque()  # Initialiser la bibliotheque
+bib.initBibliotheque()
 
 #https://covers.openlibrary.org/b/olid/OL26855580M-M.jpg    cover link
 
@@ -62,10 +65,13 @@ def authorSearch(search):
         if 'birth_date' not in datas:
             auteur = Auteur(str(datas['name']))
             print(auteur.toString())
+            #bib.addAuthor(auteur.addToBib())  # Ajouter l'auteur a la bibliotheque
+            
         else:
             auteur = Auteur(str(datas['name']))
             auteur.setDateDeNaissance(str(datas['birth_date']))
             print(auteur.toString())
+            #bib.addAuthor(auteur.addToBib())  # Ajouter l'auteur a la bibliotheque
         print(f"top work: {datas['top_work']}")
         i += 1
 
@@ -83,7 +89,7 @@ def main():
         print("que voulez vous rechercher ?")
         search = input()
         authorSearch(search)
-    # bib = Bibliotheque()
-    # bib.initBibliotheque()
+    bib.writeToJSONFile()
+    #bib.toString()
 
 main()

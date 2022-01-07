@@ -1,6 +1,6 @@
 import json
-import Livre
-import Auteur
+from classes import Livre
+from classes import Auteur
 class Bibliotheque:
     def __init__(self):
         self.liste_livre = []
@@ -16,7 +16,8 @@ class Bibliotheque:
         filePathNameWExt = "../assets/database/bibliotheque.json"
         with open(filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
-            
+        print("saved")    
+        
     def initBibliotheque(self):
         fileToRead = open('../assets/database/bibliotheque.json', 'r') #lire si il y a deja des trucs dans la bibliotheque
         data = fileToRead.read()
@@ -76,4 +77,4 @@ def main():
         elif choix == '6':
             boucle = False
 
-main()
+#main()
