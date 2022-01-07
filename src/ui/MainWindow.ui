@@ -28,7 +28,7 @@
       <widget class="QStackedWidget" name="stackedWidget">
        <widget class="QWidget" name="searchWidget">
         <property name="styleSheet">
-         <string notr="true">background-color : #444444</string>
+         <string notr="true"></string>
         </property>
         <widget class="QWidget" name="gridLayoutWidget">
          <property name="geometry">
@@ -48,7 +48,7 @@
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">color : white; padding-right : 10px;</string>
+             <string notr="true"></string>
             </property>
             <property name="text">
              <string>Rechercher</string>
@@ -63,14 +63,14 @@
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">color : white;</string>
+             <string notr="true"></string>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
            <widget class="QPushButton" name="searchButton">
             <property name="styleSheet">
-             <string notr="true">color : white;</string>
+             <string notr="true"></string>
             </property>
             <property name="text">
              <string>Rechercher</string>
@@ -94,7 +94,7 @@
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">color : white;</string>
+          <string notr="true"></string>
          </property>
          <property name="text">
           <string/>
@@ -103,7 +103,7 @@
        </widget>
        <widget class="QWidget" name="homeWidget">
         <property name="styleSheet">
-         <string notr="true">background-color : #444444</string>
+         <string notr="true"></string>
         </property>
         <widget class="QLabel" name="homeLabel">
          <property name="geometry">
@@ -123,7 +123,7 @@
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">color : white;</string>
+          <string notr="true"></string>
          </property>
          <property name="text">
           <string>HOME</string>
@@ -132,7 +132,7 @@
        </widget>
        <widget class="QWidget" name="bibliothequeWidget">
         <property name="styleSheet">
-         <string notr="true">background-color : #444444</string>
+         <string notr="true"></string>
         </property>
         <widget class="QLabel" name="bibliothequeLabel">
          <property name="geometry">
@@ -152,7 +152,7 @@
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">color : white;</string>
+          <string notr="true"></string>
          </property>
          <property name="text">
           <string>BIBLIOTHEQUE</string>
@@ -178,7 +178,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color : #3789d3; color : white;</string>
+     <string notr="true"></string>
     </property>
     <widget class="QWidget" name="verticalLayoutWidget_3">
      <property name="geometry">

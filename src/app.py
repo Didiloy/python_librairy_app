@@ -41,6 +41,9 @@ class MainWindow:
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    qss = "../assets/stylesheet/qdarkgraystyle.qss"
+    with open(qss, "r") as fh:
+        app.setStyleSheet(fh.read())
     main_win = MainWindow()
     main_win.show()
     sys.exit(app.exec_())
