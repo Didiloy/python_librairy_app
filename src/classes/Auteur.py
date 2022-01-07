@@ -15,5 +15,8 @@ class Auteur:
     def setDateDeNaissance(self, dateDeNaissance):
         self.dateDeNaissance = dateDeNaissance
 
+    def addToBib(self):
+        return {"name": self.nom, "dateDeNaissance": self.dateDeNaissance}
+
     def toString(self):
         return f"Nom : {self.nom}\nDate de naissance : {self.dateDeNaissance}"

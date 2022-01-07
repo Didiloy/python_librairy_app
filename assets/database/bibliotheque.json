@@ -1,1 +1,1 @@
-{"livres": ["le p", "artemis fowl"], "auteurs": ["le d"], "genres": ["rire"]}
+{"livres": [{"title": "matilda", "author": null, "coverId": null, "genre": null, "editeur": null, "dateDeParution": null}, {"title": "1984", "author": null, "coverId": null, "genre": null, "editeur": null, "dateDeParution": null}], "auteurs": [{"name": "robert muchamore", "dateDeNaissance": null}], "genres": ["rire"]}

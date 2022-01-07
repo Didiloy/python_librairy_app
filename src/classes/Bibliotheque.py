@@ -1,4 +1,6 @@
 import json
+import Livre
+import Auteur
 class Bibliotheque:
     def __init__(self):
         self.liste_livre = []
@@ -55,11 +57,13 @@ def main():
         if choix == '1' :
             print("quel est le titre ")
             title = input()
-            bib.addBook(title)
+            livre = Livre.Livre(title)
+            bib.addBook(livre.addToBib())
         elif choix == '2':
             print("le nom de l'auteur ?")
-            author = input()
-            bib.addAuthor(author)
+            authorName = input()
+            auteur = Auteur.Auteur(authorName)
+            bib.addAuthor(auteur.addToBib())
         elif choix == '3' :
             print("quel est le genre ? ")
             genre = input()
@@ -71,3 +75,5 @@ def main():
             bib.toString()
         elif choix == '6':
             boucle = False
+
+main()

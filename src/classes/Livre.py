@@ -44,5 +44,9 @@ class Livre:
     def getDateDeParution(self):
         return self.dateDeParution
 
+    def addToBib(self):
+        return {"title": self.titre, "author": self.auteur, "coverId": self.coverId, "genre": self.genre, "editeur": self.editeur, "dateDeParution": self.dateDeParution} 
+        #[self.titre, self.auteur, self.coverId,self.genre, self.editeur, self.dateDeParution]
+
     def toString(self):
         return (f" Titre : {self.titre}\n Auteur : {self.auteur}\n")
