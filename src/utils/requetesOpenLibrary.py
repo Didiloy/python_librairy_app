@@ -2,10 +2,14 @@ import requests
 import urllib.request
 import json
 import os
+
+import sys
+sys.path.append("..") # Adds higher directory to python modules path.
+
 from src.classes import Auteur
 from src.classes import Livre
 from src.ui import Ui_MainWindow
-import src.app
+import app
 
 
 def globalSearch(search, uiArg):
