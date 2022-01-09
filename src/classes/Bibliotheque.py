@@ -12,11 +12,15 @@ class Bibliotheque:
         data = {} #dictionnaire pour ecrire au format json
         # data["livres"] = for livre in self.liste_livre: livre.addToBib()
         data["livres"] = []
+        data["auteurs"] = []
+        data["genres"] = []
         for livre in self.liste_livre:
-            print(f"{livre} : {livre.addToBib()}")
+            # print(f"{livre} : {livre.addToBib()}")
             data["livres"].append(livre.addToBib())
-        data["auteurs"] = self.liste_auteur
-        data["genres"] = self.liste_genre
+        for auteur in self.liste_auteur:
+            data["auteurs"].append(auteur.addToBib())
+        for genre in self.liste_genre:
+            data["genres"].append(genre)
         filePathNameWExt = "../assets/database/bibliotheque.json"
         with open(filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
@@ -27,10 +31,26 @@ class Bibliotheque:
         data = fileToRead.read()
         fileToRead.close()
         dataInJson = json.loads(data) #Transformer le texte en objet json
-        for livre in dataInJson['livres']:
+        for books in dataInJson['livres']: # Transformer les livres lus en objets
+            #####################################################
+            livre = Livre.Livre(str(books['title']))
+            if 'coverId' in books and books['coverId'] != None:
+                livre.setCoverID(books['coverId'])
+            if 'author' in books and books['author'] != None:
+                livre.setAuthor(str(books['author']))
+            if 'dateDeParution' in books and books['dateDeParution'] != None:
+                livre.setDateDeParution(str(books['dateDeParution']))
             self.liste_livre.append(livre)
-        for auteur in dataInJson['auteurs']:
-            self.liste_auteur.append(auteur)
+            # print(f"{livre} : {livre.addToBib()}")
+            #####################################################
+        for auteur in dataInJson['auteurs']: # Transformer les auteurs lus en objets
+            ###################################################"
+            author = Auteur.Auteur(str(auteur['name']))
+            if 'dateDeNaissance' in auteur and auteur['dateDeNaissance'] != None:
+                author.setDateDeNaissance(str(auteur['dateDeNaissance']))
+            # print(f"{author} : {author.addToBib()}")
+            self.liste_auteur.append(author)
+            #####################################################
         for genre in dataInJson['genres']:
             self.liste_genre.append(genre)
         #print(self.liste_livre)
@@ -50,6 +70,7 @@ class Bibliotheque:
         print(self.liste_genre)
 
     def reinitBib(self):
+        print("reinitialisation")
         data = {}
         data["livres"] = []
         data["auteurs"] = []
@@ -57,7 +78,7 @@ class Bibliotheque:
         filePathNameWExt = "../assets/database/bibliotheque.json"
         with open(filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
-        print("saved")
+        print("saved reinit")
             
 def main():
     bib  = Bibliotheque()

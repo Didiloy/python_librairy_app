@@ -33,6 +33,7 @@ def populateBiblio(search):
             livre.setDateDeParution(str(books['publish_date'][0]))
         # print(livre)
         bib.addBook(livre)
+    bib.writeToJSONFile()
 
 def globalSearch(search):
     # Making a get request
@@ -84,16 +85,16 @@ def authorSearch(search):
         if 'birth_date' not in datas:
             auteur = Auteur(str(datas['name']))
             print(auteur.toString())
-            #bib.addAuthor(auteur.addToBib())  # Ajouter l'auteur a la bibliotheque
+            bib.addAuthor(auteur)  # Ajouter l'auteur a la bibliotheque
             
         else:
             auteur = Auteur(str(datas['name']))
             auteur.setDateDeNaissance(str(datas['birth_date']))
             print(auteur.toString())
-            #bib.addAuthor(auteur.addToBib())  # Ajouter l'auteur a la bibliotheque
+            bib.addAuthor(auteur)  # Ajouter l'auteur a la bibliotheque
         print(f"top work: {datas['top_work']}")
         i += 1
-
+    bib.writeToJSONFile()
 def main():
     print("que voulez vous rechercher ?")
     print("-"*20)
@@ -114,7 +115,6 @@ def main():
         populateBiblio(search)
     elif choix == '4':
         bib.reinitBib()
-    bib.writeToJSONFile()
     #bib.toString()
 
 main()
