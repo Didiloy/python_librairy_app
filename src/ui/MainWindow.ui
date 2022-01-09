@@ -14,224 +14,279 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>0</y>
-      <width>901</width>
-      <height>701</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="centerPanel" stretch="0">
-     <item>
-      <widget class="QStackedWidget" name="stackedWidget">
-       <widget class="QWidget" name="searchWidget">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <widget class="QWidget" name="">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>30</y>
-           <width>831</width>
-           <height>641</height>
-          </rect>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QWidget" name="leftPanel" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>210</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QFrame" name="frameLeftPanel">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
          </property>
-         <layout class="QGridLayout" name="gridLayoutSearchWidget">
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayoutSearchBar">
-            <property name="topMargin">
-             <number>20</number>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="verticalSpacerLeftPanelHaut">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
-            <property name="bottomMargin">
-             <number>20</number>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
             </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="searchLabel">
-              <property name="text">
-               <string>Rechercher</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QPushButton" name="searchButton">
-              <property name="text">
-               <string>Rechercher</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="searchLineEdit">
-              <property name="placeholderText">
-               <string>Tapez un nom de livre ici...</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           </spacer>
           </item>
-          <item row="1" column="0">
-           <widget class="QScrollArea" name="scrollArea">
-            <property name="widgetResizable">
-             <bool>true</bool>
+          <item>
+           <widget class="QPushButton" name="leftPanelButtonSearch">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>50</height>
+             </size>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>827</width>
-               <height>566</height>
-              </rect>
-             </property>
-             <widget class="QLabel" name="answerLabel">
-              <property name="geometry">
-               <rect>
-                <x>80</x>
-                <y>50</y>
-                <width>271</width>
-                <height>201</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </widget>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Rechercher</string>
+            </property>
            </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="leftPanelButtonHome">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Acceuil</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="leftPanelButtonBibliotheque">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Bibliothèque</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacerLeftPanelBas">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
-       </widget>
-       <widget class="QWidget" name="homeWidget">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <widget class="QLabel" name="homeLabel">
-         <property name="geometry">
-          <rect>
-           <x>380</x>
-           <y>130</y>
-           <width>91</width>
-           <height>81</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-           <underline>true</underline>
-          </font>
-         </property>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="centerPanel" stretch="0">
+      <item>
+       <widget class="QStackedWidget" name="stackedWidget">
+        <widget class="QWidget" name="searchWidget">
          <property name="styleSheet">
           <string notr="true"/>
          </property>
-         <property name="text">
-          <string>HOME</string>
-         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>30</y>
+            <width>831</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayoutSearchWidget">
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayoutSearchBar">
+             <property name="topMargin">
+              <number>20</number>
+             </property>
+             <property name="bottomMargin">
+              <number>20</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="searchLabel">
+               <property name="text">
+                <string>Rechercher</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="searchButton">
+               <property name="text">
+                <string>Rechercher</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="searchLineEdit">
+               <property name="placeholderText">
+                <string>Tapez un nom de livre ici...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>827</width>
+                <height>566</height>
+               </rect>
+              </property>
+              <widget class="QLabel" name="answerLabel">
+               <property name="geometry">
+                <rect>
+                 <x>80</x>
+                 <y>50</y>
+                 <width>271</width>
+                 <height>201</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </widget>
-       <widget class="QWidget" name="bibliothequeWidget">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <widget class="QLabel" name="bibliothequeLabel">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>140</y>
-           <width>221</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-           <underline>true</underline>
-          </font>
-         </property>
+        <widget class="QWidget" name="homeWidget">
          <property name="styleSheet">
           <string notr="true"/>
          </property>
-         <property name="text">
-          <string>BIBLIOTHEQUE</string>
-         </property>
+         <widget class="QLabel" name="homeLabel">
+          <property name="geometry">
+           <rect>
+            <x>380</x>
+            <y>130</y>
+            <width>91</width>
+            <height>81</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>HOME</string>
+          </property>
+         </widget>
         </widget>
-       </widget>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="leftPanel" native="true">
-    <property name="geometry">
-     <rect>
-      <x>-1</x>
-      <y>-1</y>
-      <width>201</width>
-      <height>701</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <widget class="QWidget" name="verticalLayoutWidget_3">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>240</y>
-       <width>201</width>
-       <height>231</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="leftPanelVerticalLayout">
-      <item>
-       <widget class="QPushButton" name="leftPanelButtonHome">
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Acceuil</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="leftPanelButtonSearch">
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Rechercher</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="leftPanelButtonBibliotheque">
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Bibliothèque</string>
-        </property>
+        <widget class="QWidget" name="bibliothequeWidget">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <widget class="QLabel" name="bibliothequeLabel">
+          <property name="geometry">
+           <rect>
+            <x>290</x>
+            <y>140</y>
+            <width>221</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>BIBLIOTHEQUE</string>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </item>
      </layout>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

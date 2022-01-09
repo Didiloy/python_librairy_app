@@ -10,7 +10,11 @@ class Bibliotheque:
 
     def writeToJSONFile(self):
         data = {} #dictionnaire pour ecrire au format json
-        data["livres"] = self.liste_livre
+        # data["livres"] = for livre in self.liste_livre: livre.addToBib()
+        data["livres"] = []
+        for livre in self.liste_livre:
+            print(f"{livre} : {livre.addToBib()}")
+            data["livres"].append(livre.addToBib())
         data["auteurs"] = self.liste_auteur
         data["genres"] = self.liste_genre
         filePathNameWExt = "../assets/database/bibliotheque.json"
@@ -44,6 +48,16 @@ class Bibliotheque:
         print(self.liste_livre)
         print(self.liste_auteur)
         print(self.liste_genre)
+
+    def reinitBib(self):
+        data = {}
+        data["livres"] = []
+        data["auteurs"] = []
+        data["genres"] = []
+        filePathNameWExt = "../assets/database/bibliotheque.json"
+        with open(filePathNameWExt, 'w') as fp:
+            json.dump(data, fp)
+        print("saved")
             
 def main():
     bib  = Bibliotheque()

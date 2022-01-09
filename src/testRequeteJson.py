@@ -15,6 +15,25 @@ def downloadCovers(id):
     url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
     urllib.request.urlretrieve(url, f"../assets/img/{id}") #télécharger l'image
 
+def populateBiblio(search):
+    response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
+    fileToWrite = open('answer.json', 'w+')  # Ecrire la reponse au format json dans un fichier json
+    fileToWrite.write(response.text)
+    fileToWrite.close()
+    data = json.loads(response.text)  # Transformer le texte en objet json
+    i = 0
+    liste_livre = []
+    for books in data['docs']:
+        livre = Livre(str(books['title']))
+        if 'cover_edition_key' in books and books['cover_edition_key'] != None:
+            livre.setCoverID(books['cover_edition_key'])
+        if 'author_name' in books and books['author_name'] != None:
+            livre.setAuthor(str(books['author_name'][-1]))
+        if 'publish_date' in books and books['publish_date'] != None:
+            livre.setDateDeParution(str(books['publish_date'][0]))
+        # print(livre)
+        bib.addBook(livre)
+
 def globalSearch(search):
     # Making a get request
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
@@ -78,7 +97,7 @@ def authorSearch(search):
 def main():
     print("que voulez vous rechercher ?")
     print("-"*20)
-    print("1.livre\n2.auteur")
+    print("1.livre\n2.auteur\n3. remplir la bibliotheque\n4. réinitialiser la bibliotheque")
     print("-"*20)
     choix = input()
     if choix == '1' :
@@ -89,6 +108,12 @@ def main():
         print("que voulez vous rechercher ?")
         search = input()
         authorSearch(search)
+    elif choix == '3':
+        print("remplir avec quel livre")
+        search = input()
+        populateBiblio(search)
+    elif choix == '4':
+        bib.reinitBib()
     bib.writeToJSONFile()
     #bib.toString()
 
