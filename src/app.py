@@ -44,28 +44,32 @@ class MainWindow:
         row = 0
         col = 0
         for livre in liste_livres:
-            widget = QtWidgets.QWidget(self.ui.scrollAreaBibliothequeWidgetContent)
+            widget = QtWidgets.QWidget(self.ui.scrollAreaBibliothequeWidgetContent) # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
             widget.setObjectName(f"widget{row}{col}")
-            verticalLayout = QtWidgets.QVBoxLayout(widget)
+            verticalLayout = QtWidgets.QVBoxLayout(widget) # Je defini le layout pour contenir les informations du livre
             verticalLayout.setObjectName(f"verticalLayoutBib_{row}{col}")
             label = QLabel(widget)
             pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
+            pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
             label.setPixmap(pixmapImgNotFound)
             verticalLayout.addWidget(label)
 
-            label_livre = QtWidgets.QLabel(widget)
+            label_livre = QtWidgets.QLabel(widget) # Je crée le label du livre
             label_livre.setObjectName(f"{livre.getTitre()}")
-            label_auteur = QtWidgets.QLabel(widget)
+
+            label_auteur = QtWidgets.QLabel(widget) # Je crée le label de l'auteur
             label_auteur.setObjectName(f"auteur{row}{col}")
+
             label_livre.setText(f"{livre.getTitre()}")
             if livre.getHasAuthor() == True :
-                label_auteur.setText(f"Auteur : {livre.getAuthor()}")
+                label_auteur.setText(f"Auteur : {livre.getAuthor()}") # Si le livre à un auteur on ajoute son nom
             verticalLayout.addWidget(label_livre)
             verticalLayout.addWidget(label_auteur)
-            if col < 3: # je vais vérifer ou nous somme dans la grille
+
+            if col < 2: # je vais vérifer ou nous somme dans la grille
                 self.ui.gridLayout.addWidget(widget, row, col)
                 col += 1
-            elif col == 3: # si la colone  c'est 4 on ajoute et puis on change de ligne
+            elif col == 2: # si la colone  c'est 4 on ajoute et puis on change de ligne
                 self.ui.gridLayout.addWidget(widget, row, col)
                 col = 0
                 row += 1
