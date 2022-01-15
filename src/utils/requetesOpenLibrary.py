@@ -1,5 +1,6 @@
 import requests
 import urllib.request
+import urllib
 import json
 import os
 from PyQt5 import QtWidgets, uic
@@ -62,7 +63,16 @@ def globalSearch(search, uiArg):
         label = QLabel(widget)
         pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
         pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
-        label.setPixmap(pixmapImgNotFound)
+
+        if livre.coverId != None:
+            url = f'https://covers.openlibrary.org/b/olid/{livre.coverId}-M.jpg'
+            data = urllib.request.urlopen(url).read()
+            pixmap = QPixmap()
+            pixmap.loadFromData(data)
+            pixmap = pixmap.scaled(100, 140)
+            label.setPixmap(pixmap)
+        else:
+            label.setPixmap(pixmapImgNotFound)
         verticalLayout.addWidget(label)
 
         label_livre = QtWidgets.QLabel(widget)  # Je crée le label du livre
@@ -75,11 +85,18 @@ def globalSearch(search, uiArg):
         label_auteur.setGeometry(100, 150, 50, 50)
         label_auteur.setWordWrap(True)
 
+        addButton = QtWidgets.QPushButton(widget)
+        addButton.setObjectName(f"addButton{row}{col}")
+        addButton.setText("ajouter à la bibliothèque")
+        # addButton.setGeometry(50, 30, 0, 0)
+        addButton.setFixedWidth(170)
+
         label_livre.setText(f"{livre.getTitre()}")
         if livre.getHasAuthor() == True:
             label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
         verticalLayout.addWidget(label_livre)
         verticalLayout.addWidget(label_auteur)
+        verticalLayout.addWidget(addButton)
 
         if col < 2:  # je vais vérifer ou nous somme dans la grille
             ui.gridLayout_2.addWidget(widget, row, col)
