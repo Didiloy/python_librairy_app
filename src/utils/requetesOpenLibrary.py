@@ -2,8 +2,13 @@ import requests
 import urllib.request
 import json
 import os
+from PyQt5 import QtWidgets, uic
 
 import sys
+
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QLabel
+
 sys.path.append("..") # Adds higher directory to python modules path.
 
 from src.classes import Auteur
@@ -15,7 +20,6 @@ import app
 def globalSearch(search, uiArg):
     ui = uiArg
     # remettre le label a 0
-    ui.answerLabel.setText("")
     search = ui.searchLineEdit.text()
     ui.searchLineEdit.setText("")
 
@@ -30,30 +34,57 @@ def globalSearch(search, uiArg):
     liste_livre = []
     hasCover = False
     for books in data['docs']:
-        if i >= 5:
-            break
         if 'cover_edition_key' in books and books['cover_edition_key'] != None:
             hasCover = True
-            # print(f"cover id : {books['cover_edition_key']}")
-            # downloadCovers(books['cover_edition_key'])
 
         if 'author_name' not in books or books['author_name'] == None or books['author_name'] == []:
-            # print('Livre: ' + str(books['title']) + ' et pas d\'auteur')
             liste_livre.append(Livre.Livre(str(books['title'])))
-            # print(liste_livre[i].toString())
-            texte = ui.answerLabel.text() + str(liste_livre[i].toString())
-            ui.answerLabel.setText(texte)
             if hasCover:
                 liste_livre[i].setCoverID(str(books['cover_edition_key']))
             i += 1
         else:
-            # print('Livre: ' + str(books['title']) + ' par l\'auteur ' + str(books['author_name'][-1]) )
             liste_livre.append(Livre.Livre(str(books['title'])))
             liste_livre[i].setAuthor(str(books['author_name'][-1]))
-            # print(liste_livre[i].toString())
-            texte = ui.answerLabel.text() + str(liste_livre[i].toString())
-            ui.answerLabel.setText(texte)
+            liste_livre[i].setHasAuthor(True)
             if hasCover:
                 liste_livre[i].setCoverID(str(books['cover_edition_key']))
             i += 1
         hasCover = False
+
+    #####afficher les résultats
+    row = 0
+    col = 0
+    for livre in liste_livre:
+        widget = QtWidgets.QWidget(ui.scrollAreaWidgetContents)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
+        widget.setObjectName(f"widgetScrollAreaAnswer{row}{col}")
+        verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
+        verticalLayout.setObjectName(f"verticalLayoutSearch_{row}{col}")
+        label = QLabel(widget)
+        pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
+        pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
+        label.setPixmap(pixmapImgNotFound)
+        verticalLayout.addWidget(label)
+
+        label_livre = QtWidgets.QLabel(widget)  # Je crée le label du livre
+        label_livre.setObjectName(f"{livre.getTitre()}")
+        label_livre.setGeometry(100, 150, 50, 50)
+        label_livre.setWordWrap(True)
+
+        label_auteur = QtWidgets.QLabel(widget)  # Je crée le label de l'auteur
+        label_auteur.setObjectName(f"auteur{row}{col}")
+        label_auteur.setGeometry(100, 150, 50, 50)
+        label_auteur.setWordWrap(True)
+
+        label_livre.setText(f"{livre.getTitre()}")
+        if livre.getHasAuthor() == True:
+            label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
+        verticalLayout.addWidget(label_livre)
+        verticalLayout.addWidget(label_auteur)
+
+        if col < 2:  # je vais vérifer ou nous somme dans la grille
+            ui.gridLayout_2.addWidget(widget, row, col)
+            col += 1
+        elif col == 2:  # si la colone  c'est 4 on ajoute et puis on change de ligne
+            ui.gridLayout_2.addWidget(widget, row, col)
+            col = 0
+            row += 1
