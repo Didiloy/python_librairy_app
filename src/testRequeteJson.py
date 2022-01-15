@@ -27,6 +27,7 @@ def populateBiblio(search):
         livre = Livre(str(books['title']))
         if 'cover_edition_key' in books and books['cover_edition_key'] != None:
             livre.setCoverID(books['cover_edition_key'])
+            downloadCovers(books['cover_edition_key'])
         if 'author_name' in books and books['author_name'] != None:
             livre.setAuthor(str(books['author_name'][-1]))
         if 'publish_date' in books and books['publish_date'] != None:

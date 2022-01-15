@@ -51,14 +51,24 @@ class MainWindow:
             label = QLabel(widget)
             pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
             pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
-            label.setPixmap(pixmapImgNotFound)
+
+            if livre.coverId != None:
+                pixmapLivre = QPixmap(f"../assets/img/{livre.coverId}")
+                pixmapLivre = pixmapLivre.scaled(100, 140)
+                label.setPixmap(pixmapLivre)
+            else :
+                label.setPixmap(pixmapImgNotFound)
             verticalLayout.addWidget(label)
 
             label_livre = QtWidgets.QLabel(widget) # Je crée le label du livre
             label_livre.setObjectName(f"{livre.getTitre()}")
+            label_livre.setGeometry(100, 150, 50, 50)
+            label_livre.setWordWrap(True)
 
             label_auteur = QtWidgets.QLabel(widget) # Je crée le label de l'auteur
             label_auteur.setObjectName(f"auteur{row}{col}")
+            label_auteur.setGeometry(100, 150, 50, 50)
+            label_auteur.setWordWrap(True)
 
             label_livre.setText(f"{livre.getTitre()}")
             if livre.getHasAuthor() == True :
