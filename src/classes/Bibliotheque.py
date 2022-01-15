@@ -38,6 +38,7 @@ class Bibliotheque:
                 livre.setCoverID(books['coverId'])
             if 'author' in books and books['author'] != None:
                 livre.setAuthor(str(books['author']))
+                livre.setHasAuthor(True)
             if 'dateDeParution' in books and books['dateDeParution'] != None:
                 livre.setDateDeParution(str(books['dateDeParution']))
             self.liste_livre.append(livre)
@@ -79,7 +80,10 @@ class Bibliotheque:
         with open(filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
         print("saved reinit")
-            
+
+    def getListeLivre(self):
+        return self.liste_livre
+
 def main():
     bib  = Bibliotheque()
     bib.initBibliotheque()

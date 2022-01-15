@@ -7,6 +7,13 @@ class Livre:
         self.editeur = None         # Editeur
         self.dateDeParution = None  # datetime
         self.coverId = None         #string
+        self.hasAuthor = False      #bool
+
+    def setHasAuthor(self, bool):
+        self.hasAuthor = bool
+
+    def getHasAuthor(self):
+        return self.hasAuthor
 
     def setAuthor(self, author):
         self.auteur = author
@@ -30,7 +37,7 @@ class Livre:
         return self.coverId
 
     def getAuthor(self):
-        return self.author
+        return self.auteur
 
     def getIsbn(self):
         return self.isbn
@@ -41,11 +48,14 @@ class Livre:
     def getEditeur(self):
         return self.editeur
 
+    def getTitre(self):
+        return self.titre
+
     def getDateDeParution(self):
         return self.dateDeParution
 
     def addToBib(self):
-        return {"title": self.titre, "author": self.auteur, "coverId": self.coverId, "genre": self.genre, "editeur": self.editeur, "dateDeParution": self.dateDeParution} 
+        return {"title": self.titre, "author": self.auteur, "coverId": self.coverId, "genre": self.genre, "editeur": self.editeur, "dateDeParution": self.dateDeParution, "hasAuthor": self.hasAuthor}
         #[self.titre, self.auteur, self.coverId,self.genre, self.editeur, self.dateDeParution]
 
     def toString(self):
