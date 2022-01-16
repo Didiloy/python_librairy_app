@@ -35,6 +35,8 @@ def globalSearch(search, uiArg):
     liste_livre = []
     hasCover = False
     for books in data['docs']:
+        if i >=27:
+            break
         if 'cover_edition_key' in books and books['cover_edition_key'] != None:
             hasCover = True
 
