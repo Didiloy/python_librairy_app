@@ -119,7 +119,7 @@ class RequetesOpenLibrary:
                 col = 0
                 row += 1
         self.addBoutonListener()
-        print(self.dico_livres_boutons)
+        # print(self.dico_livres_boutons)
 
 
     def addBoutonListener(self):
@@ -132,5 +132,11 @@ class RequetesOpenLibrary:
 
 
     def boutonAjouterBib(self, livre):
+        if livre.coverId != None:
+            self.downloadCovers(livre.coverId)
         self.bib.addBook(livre)
         self.bib.writeToJSONFile()
+
+    def downloadCovers(self, id):
+        url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
+        urllib.request.urlretrieve(url, f"../assets/img/{id}")  # télécharger l'image
