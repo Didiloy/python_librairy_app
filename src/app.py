@@ -43,10 +43,7 @@ class MainWindow:
         self.rol.globalSearch(self.ui.searchLineEdit.text())
 
     def updateBib(self):
-        print(self.bib)
         self.bib.writeToJSONFile()
-        # self.bib.initBibliotheque()
-        print(self.bib.getListeLivre())
         liste_livres = self.bib.getListeLivre()
         row = 0
         col = 0

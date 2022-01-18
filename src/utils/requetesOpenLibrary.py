@@ -1,3 +1,5 @@
+from functools import partial
+
 import requests
 import urllib.request
 import urllib
@@ -116,16 +118,19 @@ class RequetesOpenLibrary:
                 self.ui.gridLayout_2.addWidget(widget, row, col)
                 col = 0
                 row += 1
-            self.addBoutonListener()
+        self.addBoutonListener()
+        print(self.dico_livres_boutons)
 
 
     def addBoutonListener(self):
         for livre in self.dico_livres_boutons:
-            self.dico_livres_boutons.get(livre).clicked.connect(lambda: self.boutonAjouterBib(livre))
+            # self.dico_livres_boutons.get(livre).clicked.connect(lambda: self.boutonAjouterBib(livre))
+            # self.dico_livres_boutons.get(livre).clicked.connect(lambda state, x=livre: self.boutonAjouterBib(x))
+            # print(f"{livre} : {livre.getTitre()} -> {self.dico_livres_boutons.get(livre)} : {self.dico_livres_boutons.get(livre).objectName()}")
+            self.dico_livres_boutons.get(livre).clicked.connect(partial(self.boutonAjouterBib, livre))
+
+
 
     def boutonAjouterBib(self, livre):
-        print(self.bib)
         self.bib.addBook(livre)
         self.bib.writeToJSONFile()
-        print("=====================\n normalement c'est enregistrer\n=============")
-        print(self.bib.getListeLivre())
