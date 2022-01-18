@@ -1,11 +1,30 @@
 import json
 from classes import Livre
 from classes import Auteur
+
+# Utilisation du DP Singleton
+# Il ne peux exister qu'une seule instance de cette classe
+
 class Bibliotheque:
+    __instance = None
+
+    @staticmethod
+    def getInstance():
+        """ Static access method. """
+        if Bibliotheque.__instance == None:
+            Bibliotheque()
+        return Bibliotheque.__instance
+
     def __init__(self):
+        """ Virtually private constructor. """
+        if Bibliotheque.__instance != None:
+            raise Exception("This class is a singleton!")
+        else:
+            Bibliotheque.__instance = self
         self.liste_livre = []
         self.liste_auteur = []
         self.liste_genre = []
+        Bibliotheque.__instance.initBibliotheque()
 
 
     def writeToJSONFile(self):

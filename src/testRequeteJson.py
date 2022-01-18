@@ -6,8 +6,8 @@ from classes.Auteur import Auteur
 from classes.Livre import Livre
 from classes.Bibliotheque import Bibliotheque
 
-bib = Bibliotheque()  # Initialiser la bibliotheque
-bib.initBibliotheque()
+bib = Bibliotheque().getInstance()  # Initialiser la bibliotheque
+# bib.initBibliotheque()
 
 #https://covers.openlibrary.org/b/olid/OL26855580M-M.jpg    cover link
 

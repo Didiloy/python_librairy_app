@@ -1,3 +1,5 @@
+import os
+
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QFont, QPixmap
@@ -13,8 +15,8 @@ class MainWindow:
         self.ui = Ui_MainWindow.Ui_MainWindow()
         self.ui.setupUi(self.main_win)
 
-        self.bib = Bibliotheque.Bibliotheque()
-        self.bib.initBibliotheque()
+        self.bib = Bibliotheque.Bibliotheque().getInstance()
+        # self.bib.initBibliotheque()
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
@@ -37,6 +39,7 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(self.ui.bibliothequeWidget)
 
     def search(self):
+        print("searching...")
         rol.globalSearch(self.ui.searchLineEdit.text(), self.ui)
 
     def updateBib(self):
@@ -53,9 +56,12 @@ class MainWindow:
             pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
 
             if livre.coverId != None:
-                pixmapLivre = QPixmap(f"../assets/img/{livre.coverId}")
-                pixmapLivre = pixmapLivre.scaled(100, 140)
-                label.setPixmap(pixmapLivre)
+                if os.path.exists(f"../assets/img/{livre.coverId}"):
+                    pixmapLivre = QPixmap(f"../assets/img/{livre.coverId}")
+                    pixmapLivre = pixmapLivre.scaled(100, 140)
+                    label.setPixmap(pixmapLivre)
+                else:
+                    label.setPixmap(pixmapImgNotFound)
             else :
                 label.setPixmap(pixmapImgNotFound)
             verticalLayout.addWidget(label)

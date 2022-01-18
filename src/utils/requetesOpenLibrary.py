@@ -12,10 +12,13 @@ from PyQt5.QtWidgets import QLabel
 
 sys.path.append("..") # Adds higher directory to python modules path.
 
-from src.classes import Auteur
+from src.classes import Bibliotheque
 from src.classes import Livre
 from src.ui import Ui_MainWindow
-import app
+from src.app import  MainWindow
+
+dico_livres_boutons = {}
+bib = Bibliotheque.Bibliotheque().getInstance()
 
 
 def globalSearch(search, uiArg):
@@ -35,7 +38,7 @@ def globalSearch(search, uiArg):
     liste_livre = []
     hasCover = False
     for books in data['docs']:
-        if i >=27:
+        if i >= 27:
             break
         if 'cover_edition_key' in books and books['cover_edition_key'] != None:
             hasCover = True
@@ -57,6 +60,7 @@ def globalSearch(search, uiArg):
     #####afficher les résultats
     row = 0
     col = 0
+    dico_livres_boutons.clear()
     for livre in liste_livre:
         widget = QtWidgets.QWidget(ui.scrollAreaWidgetContents)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
         widget.setObjectName(f"widgetScrollAreaAnswer{row}{col}")
@@ -92,6 +96,7 @@ def globalSearch(search, uiArg):
         addButton.setText("ajouter à la bibliothèque")
         # addButton.setGeometry(50, 30, 0, 0)
         addButton.setFixedWidth(170)
+        dico_livres_boutons[livre] = addButton
 
         label_livre.setText(f"{livre.getTitre()}")
         if livre.getHasAuthor() == True:
@@ -107,3 +112,13 @@ def globalSearch(search, uiArg):
             ui.gridLayout_2.addWidget(widget, row, col)
             col = 0
             row += 1
+        addBoutonListener()
+
+
+def addBoutonListener():
+    for livre in dico_livres_boutons:
+        dico_livres_boutons.get(livre).clicked.connect(lambda: boutonAjouterBib(livre))
+
+def boutonAjouterBib(livre):
+    bib.addBook(livre)
+    bib.writeToJSONFile()
