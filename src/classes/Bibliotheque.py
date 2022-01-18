@@ -43,13 +43,13 @@ class Bibliotheque:
         filePathNameWExt = "../assets/database/bibliotheque.json"
         with open(filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
-        print("saved")    
-        
+        print("saved")
+
     def initBibliotheque(self):
         fileToRead = open('../assets/database/bibliotheque.json', 'r') #lire si il y a deja des trucs dans la bibliotheque
         data = fileToRead.read()
         fileToRead.close()
-        dataInJson = json.loads(data) #Transformer le texte en objet json
+        dataInJson = json.loads(data) # Transformer le texte en objet json
         for books in dataInJson['livres']: # Transformer les livres lus en objets
             #####################################################
             livre = Livre.Livre(str(books['title']))

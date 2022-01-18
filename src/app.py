@@ -16,7 +16,7 @@ class MainWindow:
         self.ui.setupUi(self.main_win)
 
         self.bib = Bibliotheque.Bibliotheque().getInstance()
-        # self.bib.initBibliotheque()
+        self.rol = rol.RequetesOpenLibrary(self.bib, self.ui)
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
@@ -40,9 +40,13 @@ class MainWindow:
 
     def search(self):
         print("searching...")
-        rol.globalSearch(self.ui.searchLineEdit.text(), self.ui)
+        self.rol.globalSearch(self.ui.searchLineEdit.text())
 
     def updateBib(self):
+        print(self.bib)
+        self.bib.writeToJSONFile()
+        # self.bib.initBibliotheque()
+        print(self.bib.getListeLivre())
         liste_livres = self.bib.getListeLivre()
         row = 0
         col = 0
@@ -62,7 +66,7 @@ class MainWindow:
                     label.setPixmap(pixmapLivre)
                 else:
                     label.setPixmap(pixmapImgNotFound)
-            else :
+            else:
                 label.setPixmap(pixmapImgNotFound)
             verticalLayout.addWidget(label)
 
