@@ -1,5 +1,5 @@
 import os
-
+from functools import partial
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QFont, QPixmap
@@ -17,6 +17,7 @@ class MainWindow:
 
         self.bib = Bibliotheque.Bibliotheque().getInstance()
         self.rol = rol.RequetesOpenLibrary(self.bib, self.ui)
+        self.dico_boutons_supprimer_livre = {}
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
@@ -43,6 +44,7 @@ class MainWindow:
         self.rol.globalSearch(self.ui.searchLineEdit.text())
 
     def updateBib(self):
+        self.dico_boutons_supprimer_livre.clear()
         self.bib.writeToJSONFile()
         liste_livres = self.bib.getListeLivre()
         row = 0
@@ -80,11 +82,20 @@ class MainWindow:
             label_auteur.setGeometry(100, 150, 50, 50)
             label_auteur.setWordWrap(True)
 
+            RmButton = QtWidgets.QPushButton(widget)
+            RmButton.setObjectName(f"RmButton{row}{col}")
+            # print(addButton.objectName())
+            RmButton.setText("supprimer")
+            # addButton.setGeometry(50, 30, 0, 0)
+            RmButton.setFixedWidth(170)
+            self.dico_boutons_supprimer_livre[livre] = RmButton
+
             label_livre.setText(f"{livre.getTitre()}")
             if livre.getHasAuthor() == True :
                 label_auteur.setText(f"Auteur : {livre.getAuthor()}") # Si le livre à un auteur on ajoute son nom
             verticalLayout.addWidget(label_livre)
             verticalLayout.addWidget(label_auteur)
+            verticalLayout.addWidget(RmButton)
 
             if col < 2: # je vais vérifer ou nous somme dans la grille
                 self.ui.gridLayout.addWidget(widget, row, col)
@@ -93,6 +104,13 @@ class MainWindow:
                 self.ui.gridLayout.addWidget(widget, row, col)
                 col = 0
                 row += 1
+
+    def addListenerBoutonSupprimerLivre(self):
+        for livre in self.dico_boutons_supprimer_livre:
+            self.dico_boutons_supprimer_livre.get(livre).clicked.connect(partial(self.boutonSupprimerLivre, livre))
+
+    def boutonSupprimerLivre(self, livre):
+        return 
 
     def show(self):
         self.main_win.show()
