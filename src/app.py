@@ -104,13 +104,16 @@ class MainWindow:
                 self.ui.gridLayout.addWidget(widget, row, col)
                 col = 0
                 row += 1
+        self.addListenerBoutonSupprimerLivre()
 
     def addListenerBoutonSupprimerLivre(self):
         for livre in self.dico_boutons_supprimer_livre:
             self.dico_boutons_supprimer_livre.get(livre).clicked.connect(partial(self.boutonSupprimerLivre, livre))
 
     def boutonSupprimerLivre(self, livre):
-        return 
+        self.bib.removeBook(livre)
+        self.updateBib()
+        
 
     def show(self):
         self.main_win.show()
