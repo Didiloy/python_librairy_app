@@ -53,12 +53,15 @@ class MainWindow:
             verticalLayout = QtWidgets.QVBoxLayout(widget) # Je defini le layout pour contenir les informations du livre
             verticalLayout.setObjectName(f"verticalLayoutBib_{row}{col}")
             label = QLabel(widget)
-            pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
+            imgNotFound = os.path.join("..","assets","img","image_not_found.png")
+            # pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
+            pixmapImgNotFound = QPixmap(imgNotFound)
             pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
 
             if livre.coverId != None:
-                if os.path.exists(f"../assets/img/{livre.coverId}"):
-                    pixmapLivre = QPixmap(f"../assets/img/{livre.coverId}")
+                pathToCover = os.path.join("..", "assets", "img", livre.coverId)
+                if os.path.exists(pathToCover):
+                    pixmapLivre = QPixmap(pathToCover)
                     pixmapLivre = pixmapLivre.scaled(100, 140)
                     label.setPixmap(pixmapLivre)
                 else:
@@ -97,7 +100,8 @@ class MainWindow:
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    qss = "../assets/stylesheet/qdarkgraystyle.qss"
+    pathToQss = os.path.join("..", "assets", "stylesheet", "qdarkgraystyle.qss")
+    qss = pathToQss
     with open(qss, "r") as fh:
         app.setStyleSheet(fh.read())
     main_win = MainWindow()

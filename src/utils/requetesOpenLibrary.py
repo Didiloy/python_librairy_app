@@ -34,8 +34,8 @@ class RequetesOpenLibrary:
 
         # Making a get request
         response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
-
-        fileToWrite = open('../answer.json', 'w+')  # Ecrire la reponse au format json dans un fichier json
+        answerJson = os.path.join("..", "answer.json")
+        fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
         fileToWrite.write(response.text)
         fileToWrite.close()
         data = json.loads(response.text)  # Transformer le texte en objet json
@@ -72,7 +72,9 @@ class RequetesOpenLibrary:
             verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
             verticalLayout.setObjectName(f"verticalLayoutSearch_{row}{col}")
             label = QLabel(widget)
-            pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
+            imgNotFound = os.path.join("..","assets","img","image_not_found.png")
+            # pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
+            pixmapImgNotFound = QPixmap(imgNotFound)
             pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
 
             if livre.coverId != None:
@@ -139,4 +141,5 @@ class RequetesOpenLibrary:
 
     def downloadCovers(self, id):
         url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
-        urllib.request.urlretrieve(url, f"../assets/img/{id}")  # télécharger l'image
+        pathToImg = os.path.join("..", "assets", "img", id)
+        urllib.request.urlretrieve(url, pathToImg)  # télécharger l'image
