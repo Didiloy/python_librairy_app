@@ -1,4 +1,5 @@
 import json
+import os
 from classes import Livre
 from classes import Auteur
 
@@ -24,6 +25,7 @@ class Bibliotheque:
         self.liste_livre = []
         self.liste_auteur = []
         self.liste_genre = []
+        self.filePathNameWExt = os.path.join("..", "assets", "database", "bibliotheque.json") # chemin du fichier json ou sont stocké les livres
         Bibliotheque.__instance.initBibliotheque()
 
 
@@ -40,13 +42,12 @@ class Bibliotheque:
             data["auteurs"].append(auteur.addToBib())
         for genre in self.liste_genre:
             data["genres"].append(genre)
-        filePathNameWExt = "../assets/database/bibliotheque.json"
-        with open(filePathNameWExt, 'w') as fp:
+        with open(self.filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
         print("saved")
 
     def initBibliotheque(self):
-        fileToRead = open('../assets/database/bibliotheque.json', 'r') #lire si il y a deja des trucs dans la bibliotheque
+        fileToRead = open(self.filePathNameWExt, 'r') #lire si il y a deja des trucs dans la bibliotheque
         data = fileToRead.read()
         fileToRead.close()
         dataInJson = json.loads(data) # Transformer le texte en objet json
@@ -80,6 +81,12 @@ class Bibliotheque:
 
     def addAuthor(self, author):
         self.liste_auteur.append(author)
+    
+    def removeBook(self, book):
+        if book in self.liste_livre :
+            self.liste_livre.remove(book)
+        else :
+            print("livre pas dans la bibliothèque")
 
     def addGenre(self, genre):
         self.liste_genre.append(genre)
@@ -95,8 +102,7 @@ class Bibliotheque:
         data["livres"] = []
         data["auteurs"] = []
         data["genres"] = []
-        filePathNameWExt = "../assets/database/bibliotheque.json"
-        with open(filePathNameWExt, 'w') as fp:
+        with open(self.filePathNameWExt, 'w') as fp:
             json.dump(data, fp)
         print("saved reinit")
 

@@ -13,11 +13,13 @@ bib = Bibliotheque().getInstance()  # Initialiser la bibliotheque
 
 def downloadCovers(id):
     url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
-    urllib.request.urlretrieve(url, f"../assets/img/{id}") #télécharger l'image
+    pathToImg = os.path.join("..", "assets", "img", id)
+    urllib.request.urlretrieve(url, pathToImg) #télécharger l'image
 
 def populateBiblio(search):
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
-    fileToWrite = open('answer.json', 'w+')  # Ecrire la reponse au format json dans un fichier json
+    answerJson = os.path.join("answer.json")
+    fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text)  # Transformer le texte en objet json
@@ -39,8 +41,8 @@ def populateBiblio(search):
 def globalSearch(search):
     # Making a get request
     response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
-
-    fileToWrite = open('answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
+    answerJson = os.path.join("answer.json")
+    fileToWrite = open(answerJson, 'w+') #Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text) #Transformer le texte en objet json
@@ -75,7 +77,8 @@ def globalSearch(search):
 
 def authorSearch(search):
     response = requests.get(f'https://openlibrary.org/search/authors.json?q={search}&mode=everything')
-    fileToWrite = open('answer.json', 'w+') #Ecrire la reponse au format json dans un fichier json
+    answerJson = os.path.join("answer.json")
+    fileToWrite = open(answerJson, 'w+') #Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)
     fileToWrite.close()
     data = json.loads(response.text) #Transformer le texte en objet json
