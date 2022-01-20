@@ -44,6 +44,10 @@ class MainWindow:
         self.rol.globalSearch(self.ui.searchLineEdit.text())
 
     def updateBib(self):
+        # print(self.ui.scrollAreaBibliothequeWidgetContent.children())
+        for widget in self.ui.scrollAreaBibliothequeWidgetContent.children(): # Supprimer tout les éléments graphique créés dans la bibliothèque
+            if widget.objectName() != "gridLayout" and widget.objectName() != "widget": # ne pas supprimer ces deux là car ce sont ceux dans lesquels sont ajoutés les widgets des livres
+                widget.deleteLater()
         self.dico_boutons_supprimer_livre.clear()
         self.bib.writeToJSONFile()
         liste_livres = self.bib.getListeLivre()
@@ -104,7 +108,9 @@ class MainWindow:
                 self.ui.gridLayout.addWidget(widget, row, col)
                 col = 0
                 row += 1
+            # print(widget.parentWidget().objectName()) # trouve le nom du parent auxquelles les widgets sont ajoutés
         self.addListenerBoutonSupprimerLivre()
+
 
     def addListenerBoutonSupprimerLivre(self):
         for livre in self.dico_boutons_supprimer_livre:
