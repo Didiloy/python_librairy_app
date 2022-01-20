@@ -17,7 +17,7 @@ def downloadCovers(id):
     urllib.request.urlretrieve(url, pathToImg) #télécharger l'image
 
 def populateBiblio(search):
-    response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
+    response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything&has_fulltext=true&limit=27')
     answerJson = os.path.join("answer.json")
     fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)

@@ -33,7 +33,7 @@ class RequetesOpenLibrary:
         self.ui.searchLineEdit.setText("")
 
         # Making a get request
-        response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything')
+        response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything&has_fulltext=true&limit=27')
         answerJson = os.path.join("..", "answer.json")
         fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
         fileToWrite.write(response.text)
@@ -43,8 +43,6 @@ class RequetesOpenLibrary:
         liste_livre = []
         hasCover = False
         for books in data['docs']:
-            if i >= 27:
-                break
             if 'cover_edition_key' in books and books['cover_edition_key'] != None:
                 hasCover = True
 
