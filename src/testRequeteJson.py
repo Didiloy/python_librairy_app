@@ -72,6 +72,8 @@ def globalSearch(search):
             if hasCover:
                 liste_livre[i].setCoverID(str(books['cover_edition_key']))
             i += 1
+        # print(f"premiere seed : {books['seed'][0]}") la seed permet de rechercher le livre précisément et d'avoir son résumé.
+        # TODO
         hasCover = False
 
 
