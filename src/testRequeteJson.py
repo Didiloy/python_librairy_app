@@ -58,7 +58,7 @@ def populateBiblio(search):
 
 def globalSearch(search):
     # Making a get request
-    response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books')
+    response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books&maxResults=21')
     answerJson = os.path.join("..", "answer.json")
     fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
     fileToWrite.write(response.text)

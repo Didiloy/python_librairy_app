@@ -11,6 +11,7 @@ import sys
 
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLabel
+from PyQt5.uic.properties import QtCore
 
 sys.path.append("..") # Adds higher directory to python modules path.
 
@@ -31,7 +32,7 @@ class RequetesOpenLibrary:
         search = self.ui.searchLineEdit.text()
         self.ui.searchLineEdit.setText("")
         # Making a get request
-        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books')
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books&maxResults=21')
         answerJson = os.path.join("..", "answer.json")
         fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
         fileToWrite.write(response.text)
