@@ -101,7 +101,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Acceuil</string>
+             <string>Recommendations</string>
             </property>
            </widget>
           </item>
@@ -230,10 +230,41 @@
                  <height>587</height>
                 </rect>
                </property>
-               <layout class="QGridLayout" name="gridLayout_2">
-                <item row="0" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <item alignment="Qt::AlignHCenter">
+                 <widget class="QLabel" name="labelRechercheEnCours">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>300</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::NoFrame</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Plain</enum>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QWidget" name="widgetScrollAreaSearchAnswer" native="true">
-                  <layout class="QVBoxLayout" name="verticalLayout_6"/>
+                  <layout class="QGridLayout" name="gridLayout_2">
+                   <item row="0" column="0">
+                    <widget class="QWidget" name="widgetWidgetScrollAreaSearchAnswer" native="true">
+                     <layout class="QVBoxLayout" name="verticalLayout_6"/>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                </layout>
@@ -306,8 +337,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>844</width>
-               <height>617</height>
+               <width>98</width>
+               <height>38</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">

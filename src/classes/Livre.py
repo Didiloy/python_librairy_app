@@ -8,6 +8,13 @@ class Livre:
         self.dateDeParution = None  # datetime
         self.coverId = None         #string
         self.hasAuthor = False      #bool
+        self.coverLink = None
+
+    def setCoverLink(self, coverlink):
+        self.coverLink = coverlink
+
+    def getCoverLink(self):
+        return self.coverLink
 
     def setHasAuthor(self, bool):
         self.hasAuthor = bool

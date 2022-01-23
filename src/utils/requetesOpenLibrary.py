@@ -26,14 +26,12 @@ class RequetesOpenLibrary:
         self.bib = biblio
         self.ui = uiArg
 
-
     def globalSearch(self, search):
         # remettre le label a 0
         search = self.ui.searchLineEdit.text()
         self.ui.searchLineEdit.setText("")
-
         # Making a get request
-        response = requests.get(f'https://openlibrary.org/search.json?q={search}&&mode=everything&has_fulltext=true&limit=27')
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books')
         answerJson = os.path.join("..", "answer.json")
         fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
         fileToWrite.write(response.text)
@@ -42,21 +40,27 @@ class RequetesOpenLibrary:
         i = 0
         liste_livre = []
         hasCover = False
-        for books in data['docs']:
-            if 'cover_edition_key' in books and books['cover_edition_key'] != None:
+        for books in data['items']:
+            volumeInfo = books['volumeInfo']
+            if 'imageLinks' in volumeInfo and volumeInfo['imageLinks'] != None :
+                coversLink = volumeInfo['imageLinks']
                 hasCover = True
 
-            if 'author_name' not in books or books['author_name'] == None or books['author_name'] == []:
-                liste_livre.append(Livre.Livre(str(books['title'])))
+            if 'authors' not in volumeInfo or volumeInfo['authors'] == None or volumeInfo['authors'] == []:
+                liste_livre.append(Livre.Livre(str(volumeInfo['title'])))
                 if hasCover:
-                    liste_livre[i].setCoverID(str(books['cover_edition_key']))
+                    liste_livre[i].setCoverID(str(books['id'])) # je met l'id du livre comme id de cover
+                    liste_livre[i].setCoverLink(coversLink['thumbnail'])
                 i += 1
             else:
-                liste_livre.append(Livre.Livre(str(books['title'])))
-                liste_livre[i].setAuthor(str(books['author_name'][-1]))
+                liste_livre.append(Livre.Livre(str(volumeInfo['title'])))
+                liste_livre[i].setAuthor(str(volumeInfo['authors'][0]))
                 liste_livre[i].setHasAuthor(True)
                 if hasCover:
-                    liste_livre[i].setCoverID(str(books['cover_edition_key']))
+                    liste_livre[i].setCoverID(str(books['id']))
+                    liste_livre[i].setCoverLink(coversLink['thumbnail'])
+                if 'publishedDate' in volumeInfo and volumeInfo['publishedDate'] != None:
+                    liste_livre[i].setDateDeParution(volumeInfo['publishedDate'])
                 i += 1
             hasCover = False
 
@@ -76,7 +80,7 @@ class RequetesOpenLibrary:
             pixmapImgNotFound = pixmapImgNotFound.scaled(100, 140)
 
             if livre.coverId != None:
-                url = f'https://covers.openlibrary.org/b/olid/{livre.coverId}-M.jpg'
+                url = livre.getCoverLink()
                 data = urllib.request.urlopen(url).read()
                 pixmap = QPixmap()
                 pixmap.loadFromData(data)
@@ -120,6 +124,7 @@ class RequetesOpenLibrary:
                 row += 1
         self.addBoutonListener()
         # print(self.dico_livres_boutons)
+        self.ui.labelRechercheEnCours.setText("")
 
 
     def addBoutonListener(self):
@@ -133,11 +138,11 @@ class RequetesOpenLibrary:
 
     def boutonAjouterBib(self, livre):
         if livre.coverId != None:
-            self.downloadCovers(livre.coverId)
+            self.downloadCovers(livre.getCoverLink(), livre.getCoverID())
         self.bib.addBook(livre)
         self.bib.writeToJSONFile()
 
-    def downloadCovers(self, id):
-        url = f'https://covers.openlibrary.org/b/olid/{id}-M.jpg'
-        pathToImg = os.path.join("..", "assets", "img", id)
+    def downloadCovers(self, id, name):
+        url = id
+        pathToImg = os.path.join("..", "assets", "img", name)
         urllib.request.urlretrieve(url, pathToImg)  # télécharger l'image

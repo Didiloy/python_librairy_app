@@ -3,6 +3,7 @@ from functools import partial
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QFont, QPixmap
+import asyncio
 import sys
 from classes import Livre, Auteur, Bibliotheque
 from ui import Ui_MainWindow
@@ -12,6 +13,7 @@ import utils.requetesOpenLibrary as rol
 class MainWindow:
     def __init__(self):
         self.main_win = QMainWindow()
+        self.main_win.setWindowTitle("Bibliothèque")
         self.ui = Ui_MainWindow.Ui_MainWindow()
         self.ui.setupUi(self.main_win)
 
@@ -29,7 +31,7 @@ class MainWindow:
     def getUi(self):
         return self.ui
 
-    def showHome(self):
+    def showHome(self): # Recommendations
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)
 
     def showSearch(self):
@@ -41,7 +43,9 @@ class MainWindow:
 
     def search(self):
         print("searching...")
+        self.ui.labelRechercheEnCours.setText("Recherche en cours..")
         self.rol.globalSearch(self.ui.searchLineEdit.text())
+        self.ui.labelRechercheEnCours.setText("")
 
     def updateBib(self):
         # print(self.ui.scrollAreaBibliothequeWidgetContent.children())
