@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QFont, QPixmap
 import asyncio
+import time
 import sys
 from classes import Livre, Auteur, Bibliotheque
 from ui import Ui_MainWindow
@@ -42,10 +43,10 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(self.ui.bibliothequeWidget)
 
     def search(self):
-        print("searching...")
         self.ui.labelRechercheEnCours.setText("Recherche en cours..")
+        print("searching...")
+        QApplication.processEvents() # ecouter les autres event de la fenetre pour les traiter. Ici afficher le label recherche en cours pendant qu'on cherche les livres
         self.rol.globalSearch(self.ui.searchLineEdit.text())
-        self.ui.labelRechercheEnCours.setText("")
 
     def updateBib(self):
         # print(self.ui.scrollAreaBibliothequeWidgetContent.children())
