@@ -275,6 +275,80 @@
           </item>
          </layout>
         </widget>
+        <widget class="QWidget" name="bookDetailWidget">
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QWidget" name="bookDetailCoverWidget" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QLabel" name="bookDetailCoverLabel">
+               <property name="minimumSize">
+                <size>
+                 <width>200</width>
+                 <height>260</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignLeft">
+              <widget class="QLabel" name="bookDetailTitleLabel">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="bookDetailAuthorLabel">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="bookDetailDescriptionWidget" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <item>
+              <widget class="QLabel" name="bookDetailDescriptionLabel">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="bookDetaillRetourButton">
+               <property name="text">
+                <string>Retour</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
         <widget class="QWidget" name="homeWidget">
          <property name="styleSheet">
           <string notr="true"/>
@@ -337,7 +411,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>98</width>
+               <width>66</width>
                <height>38</height>
               </rect>
              </property>

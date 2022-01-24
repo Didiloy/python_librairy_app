@@ -8,7 +8,14 @@ class Livre:
         self.dateDeParution = None  # datetime
         self.coverId = None         #string
         self.hasAuthor = False      #bool
-        self.coverLink = None
+        self.coverLink = None       # str
+        self.resume = None          # str
+
+    def setResume(self, resume):
+        self.resume = resume
+
+    def getResume(self):
+        return self.resume
 
     def setCoverLink(self, coverlink):
         self.coverLink = coverlink
@@ -62,7 +69,7 @@ class Livre:
         return self.dateDeParution
 
     def addToBib(self):
-        return {"title": self.titre, "author": self.auteur, "coverId": self.coverId, "genre": self.genre, "editeur": self.editeur, "dateDeParution": self.dateDeParution, "hasAuthor": self.hasAuthor}
+        return {"title": self.titre, "author": self.auteur, "coverId": self.coverId, "genre": self.genre, "editeur": self.editeur, "dateDeParution": self.dateDeParution, "hasAuthor": self.hasAuthor, "resume": self.resume, "coverLink": self.coverLink}
         #[self.titre, self.auteur, self.coverId,self.genre, self.editeur, self.dateDeParution]
 
     def toString(self):

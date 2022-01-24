@@ -25,6 +25,7 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
         self.ui.leftPanelButtonSearch.clicked.connect(self.showSearch)  # j'ajoute une action au bouton pour afficher le bon panel
+        self.ui.bookDetaillRetourButton.clicked.connect(self.showSearch) # afficher le panel de recherche quand le bouton est cliqué
         self.ui.leftPanelButtonBibliotheque.clicked.connect(self.showBiblio)  # j'ajoute une action au bouton pour afficher le bon panel
 
         self.ui.searchButton.clicked.connect(self.search)  # j'ajoute la fonction pour rechercher au bouton
