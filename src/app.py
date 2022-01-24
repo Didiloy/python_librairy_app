@@ -1,6 +1,7 @@
 import os
 from functools import partial
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtWidgets, uic, QtGui
+from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QFont, QPixmap
 import asyncio
@@ -21,6 +22,7 @@ class MainWindow:
         self.bib = Bibliotheque.Bibliotheque().getInstance()
         self.rol = rol.RequetesOpenLibrary(self.bib, self.ui)
         self.dico_boutons_supprimer_livre = {}
+        self.dico_livres_boutons_cover = {}
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
@@ -45,7 +47,6 @@ class MainWindow:
 
     def search(self):
         self.ui.labelRechercheEnCours.setText("Recherche en cours..")
-        print("searching...")
         QApplication.processEvents() # ecouter les autres event de la fenetre pour les traiter. Ici afficher le label recherche en cours pendant qu'on cherche les livres
         self.rol.globalSearch(self.ui.searchLineEdit.text())
 
@@ -55,6 +56,7 @@ class MainWindow:
             if widget.objectName() != "gridLayout" and widget.objectName() != "widget": # ne pas supprimer ces deux là car ce sont ceux dans lesquels sont ajoutés les widgets des livres
                 widget.deleteLater()
         self.dico_boutons_supprimer_livre.clear()
+        self.dico_livres_boutons_cover.clear()
         self.bib.writeToJSONFile()
         liste_livres = self.bib.getListeLivre()
         row = 0
@@ -64,7 +66,9 @@ class MainWindow:
             widget.setObjectName(f"widget{row}{col}")
             verticalLayout = QtWidgets.QVBoxLayout(widget) # Je defini le layout pour contenir les informations du livre
             verticalLayout.setObjectName(f"verticalLayoutBib_{row}{col}")
-            label = QLabel(widget)
+            # label = QLabel(widget)
+            button_cover_livre = QtWidgets.QPushButton(widget)
+            button_cover_livre.setStyleSheet("border-style: none")
             imgNotFound = os.path.join("..","assets","img","image_not_found.png")
             # pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
             pixmapImgNotFound = QPixmap(imgNotFound)
@@ -72,15 +76,22 @@ class MainWindow:
 
             if livre.coverId != None:
                 pathToCover = os.path.join("..", "assets", "img", livre.coverId)
-                if os.path.exists(pathToCover):
+                if os.path.exists(pathToCover): # Si le fichier existe
                     pixmapLivre = QPixmap(pathToCover)
                     pixmapLivre = pixmapLivre.scaled(100, 140)
-                    label.setPixmap(pixmapLivre)
-                else:
-                    label.setPixmap(pixmapImgNotFound)
+                    # label.setPixmap(pixmapLivre)
+                    button_cover_livre.setIcon(QtGui.QIcon(pixmapLivre))
+                    button_cover_livre.setIconSize(QSize(100, 140))
+                else: # Si le fichier n'existe pas
+                    # label.setPixmap(pixmapImgNotFound)
+                    button_cover_livre.setIcon(QtGui.QIcon(pixmapImgNotFound))
+                    button_cover_livre.setIconSize(QSize(100, 140))
             else:
-                label.setPixmap(pixmapImgNotFound)
-            verticalLayout.addWidget(label)
+                # label.setPixmap(pixmapImgNotFound)
+                button_cover_livre.setIcon(QtGui.QIcon(pixmapImgNotFound))
+                button_cover_livre.setIconSize(QSize(100, 140))
+            # verticalLayout.addWidget(label)
+            verticalLayout.addWidget(button_cover_livre)
 
             label_livre = QtWidgets.QLabel(widget) # Je crée le label du livre
             label_livre.setObjectName(f"{livre.getTitre()}")
@@ -99,6 +110,7 @@ class MainWindow:
             # addButton.setGeometry(50, 30, 0, 0)
             RmButton.setFixedWidth(170)
             self.dico_boutons_supprimer_livre[livre] = RmButton
+            self.dico_livres_boutons_cover[livre] = button_cover_livre
 
             label_livre.setText(f"{livre.getTitre()}")
             if livre.getHasAuthor() == True :
@@ -116,7 +128,36 @@ class MainWindow:
                 row += 1
             # print(widget.parentWidget().objectName()) # trouve le nom du parent auxquelles les widgets sont ajoutés
         self.addListenerBoutonSupprimerLivre()
+        self.addBoutonCoverLivreListener()
 
+
+    def addBoutonCoverLivreListener(self):
+        for livre in self.dico_livres_boutons_cover:
+            self.dico_livres_boutons_cover.get(livre).clicked.connect(partial(self.button_cover_livre_handler, livre))
+
+    def button_cover_livre_handler(self, livre): # montrer le panel de détail du livre
+        imgNotFound = os.path.join("..", "assets", "img", "image_not_found.png")
+        pixmapImgNotFound = QPixmap(imgNotFound)
+        pixmapImgNotFound = pixmapImgNotFound.scaled(200, 260)
+
+        if livre.getCoverID() != None: # Si le livre à une cover
+            pathToCover = os.path.join("..", "assets", "img", livre.getCoverID())
+            if os.path.exists(pathToCover):  # Si le fichier existe
+                pixmapLivre = QPixmap(pathToCover)
+                pixmapLivre = pixmapLivre.scaled(200, 260)
+                self.ui.bookDetailCoverLabel.setPixmap(pixmapLivre)
+            else : # Si le fichier n'existe pas
+                self.ui.bookDetailCoverLabel.setPixmap(pixmapImgNotFound)
+        else: # Si le livre n'en a pas
+            self.ui.bookDetailCoverLabel.setPixmap(pixmapImgNotFound)
+
+        self.ui.bookDetailAuthorLabel.setText(livre.getAuthor()) # Mettre le nom de l'auteur
+        self.ui.bookDetailTitleLabel.setText(livre.getTitre()) # Mettre le titre
+        if livre.getResume() == None: # Si il n'y a pas de résumé
+            self.ui.bookDetailDescriptionLabel.setText("Pas de résumé disponible.")
+        else :
+            self.ui.bookDetailDescriptionLabel.setText(livre.getResume()) # Mettre le résumé
+        self.ui.stackedWidget.setCurrentWidget(self.ui.bookDetailWidget) # Montrer le panel
 
     def addListenerBoutonSupprimerLivre(self):
         for livre in self.dico_boutons_supprimer_livre:

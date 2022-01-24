@@ -31,7 +31,6 @@ class Bibliotheque:
 
     def writeToJSONFile(self):
         data = {} #dictionnaire pour ecrire au format json
-        # data["livres"] = for livre in self.liste_livre: livre.addToBib()
         data["livres"] = []
         data["auteurs"] = []
         data["genres"] = []
@@ -61,6 +60,10 @@ class Bibliotheque:
                 livre.setHasAuthor(True)
             if 'dateDeParution' in books and books['dateDeParution'] != None:
                 livre.setDateDeParution(str(books['dateDeParution']))
+            if 'resume' in books and books['resume'] != None:
+                livre.setResume(str(books['resume']))
+            if 'coverLink' in books and books['coverLink'] != None:
+                livre.setCoverLink(str(books['coverLink']))
             self.liste_livre.append(livre)
             # print(f"{livre} : {livre.addToBib()}")
             #####################################################

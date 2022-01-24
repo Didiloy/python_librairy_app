@@ -161,6 +161,8 @@ class RequetesOpenLibrary:
     def boutonAjouterBib(self, livre):
         if livre.coverId != None:
             self.downloadCovers(livre.getCoverLink(), livre.getCoverID())
+        if livre.getResume() != None:
+            print("le livre à un résumé")
         self.bib.addBook(livre)
         self.bib.writeToJSONFile()
 
