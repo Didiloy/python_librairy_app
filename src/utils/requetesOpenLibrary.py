@@ -189,5 +189,8 @@ class RequetesOpenLibrary:
 
         self.ui.bookDetailAuthorLabel.setText(livre.getAuthor()) # Mettre le nom de l'auteur
         self.ui.bookDetailTitleLabel.setText(livre.getTitre()) # Mettre le titre
-        self.ui.bookDetailDescriptionLabel.setText(livre.getResume()) # Mettre le résumé
+        if livre.getResume() == None: # Si il n'y a pas de résumé
+            self.ui.bookDetailDescriptionLabel.setText("Pas de résumé disponible.")
+        else :
+            self.ui.bookDetailDescriptionLabel.setText(livre.getResume()) # Mettre le résumé
         self.ui.stackedWidget.setCurrentWidget(self.ui.bookDetailWidget) # Montrer le panel
