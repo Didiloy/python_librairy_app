@@ -2,6 +2,7 @@ import requests
 import urllib.request
 import json
 import os
+import random
 from classes.Auteur import Auteur
 from classes.Livre import Livre
 from classes.Bibliotheque import Bibliotheque
@@ -16,6 +17,12 @@ def downloadCovers(id, name):
     url = id
     pathToImg = os.path.join("..", "assets", "img", name)
     urllib.request.urlretrieve(url, pathToImg) #télécharger l'image
+
+def searchXkcd():
+    rand = random.randint(1, 2572)
+    reponse = requests.get(f'https://xkcd.com/{rand}/info.0.json')
+    print(reponse)
+    print(reponse.text)
 
 def getJsonGoogleBooksApi(search):
     response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books')
@@ -119,7 +126,7 @@ def authorSearch(search):
 def main():
     print("que voulez vous rechercher ?")
     print("-"*20)
-    print("1.livre\n2.auteur\n3. remplir la bibliotheque\n4. réinitialiser la bibliotheque\n5. rechercher avec google books")
+    print("1.livre\n2.auteur\n3. remplir la bibliotheque\n4. réinitialiser la bibliotheque\n5. rechercher avec google books\n6. recherche xkcd")
     print("-"*20)
     choix = input()
     if choix == '1' :
@@ -140,6 +147,8 @@ def main():
         print("rechercher quel livre")
         search = input()
         getJsonGoogleBooksApi(search)
+    elif choix == '6':
+        searchXkcd()
     #bib.toString()
 
 main()

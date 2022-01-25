@@ -1,5 +1,10 @@
+import json
 import os
+import urllib
 from functools import partial
+import random
+
+import requests
 from PyQt5 import QtWidgets, uic, QtGui
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
@@ -23,12 +28,14 @@ class MainWindow:
         self.rol = rol.RequetesOpenLibrary(self.bib, self.ui)
         self.dico_boutons_supprimer_livre = {}
         self.dico_livres_boutons_cover = {}
+        self.getRandomComic()
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
         self.ui.leftPanelButtonSearch.clicked.connect(self.showSearch)  # j'ajoute une action au bouton pour afficher le bon panel
         self.ui.bookDetaillRetourButton.clicked.connect(self.showSearch) # afficher le panel de recherche quand le bouton est cliqué
         self.ui.leftPanelButtonBibliotheque.clicked.connect(self.showBiblio)  # j'ajoute une action au bouton pour afficher le bon panel
+        self.ui.buttonBlague.clicked.connect(self.getRandomComic)
 
         self.ui.searchButton.clicked.connect(self.search)  # j'ajoute la fonction pour rechercher au bouton
 
@@ -49,6 +56,18 @@ class MainWindow:
         self.ui.labelRechercheEnCours.setText("Recherche en cours..")
         QApplication.processEvents() # ecouter les autres event de la fenetre pour les traiter. Ici afficher le label recherche en cours pendant qu'on cherche les livres
         self.rol.globalSearch(self.ui.searchLineEdit.text())
+
+    def getRandomComic(self):
+        rand = random.randint(1, 2572)
+        reponse = requests.get(f'https://xkcd.com/{rand}/info.0.json')
+        data = json.loads(reponse.text)
+        url = data['img']
+        img = urllib.request.urlopen(url).read()
+        pixmap = QPixmap()
+        pixmap.loadFromData(img)
+        pixmap = pixmap.scaled(600, 160)
+        self.ui.labelImageBlague.setPixmap(pixmap)
+
 
     def updateBib(self):
         # print(self.ui.scrollAreaBibliothequeWidgetContent.children())
