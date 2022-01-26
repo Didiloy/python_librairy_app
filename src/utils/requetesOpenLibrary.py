@@ -12,9 +12,6 @@ from PyQt5 import QtWidgets, uic, QtGui
 
 import sys
 
-# from PyQt5.QtCore import QSize
-# from PyQt5.QtGui import QPixmap
-# from PyQt5.QtWidgets import QLabel, QApplication
 from PyQt5.uic.properties import QtCore
 
 sys.path.append("..") # Adds higher directory to python modules path.
