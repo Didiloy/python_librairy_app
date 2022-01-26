@@ -28,7 +28,6 @@ class MainWindow:
         self.rol = rol.RequetesOpenLibrary(self.bib, self.ui)
         self.dico_boutons_supprimer_livre = {}
         self.dico_livres_boutons_cover = {}
-        self.getRandomComic()
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
@@ -43,6 +42,8 @@ class MainWindow:
         return self.ui
 
     def showHome(self): # Recommendations
+        self.getRandomComic()
+        QApplication.processEvents()
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)
 
     def showSearch(self):

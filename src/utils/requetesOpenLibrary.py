@@ -5,13 +5,16 @@ import urllib.request
 import urllib
 import json
 import os
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 from PyQt5 import QtWidgets, uic, QtGui
 
 import sys
 
-from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QLabel, QApplication
+# from PyQt5.QtCore import QSize
+# from PyQt5.QtGui import QPixmap
+# from PyQt5.QtWidgets import QLabel, QApplication
 from PyQt5.uic.properties import QtCore
 
 sys.path.append("..") # Adds higher directory to python modules path.
@@ -109,11 +112,13 @@ class RequetesOpenLibrary:
                 label_livre = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre du livre
                 label_livre.setObjectName(f"{livre.getTitre()}")
                 label_livre.setGeometry(100, 150, 50, 50)
+                label_livre.setAlignment(Qt.AlignCenter)
                 label_livre.setWordWrap(True)
 
                 label_auteur = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre de l'auteur
                 label_auteur.setObjectName(f"auteur{row}{col}")
                 label_auteur.setGeometry(100, 150, 50, 50)
+                label_auteur.setAlignment(Qt.AlignCenter)
                 label_auteur.setWordWrap(True)
 
                 addButton = QtWidgets.QPushButton(widget)
@@ -122,6 +127,7 @@ class RequetesOpenLibrary:
                 addButton.setText("ajouter à la bibliothèque")
                 # addButton.setGeometry(50, 30, 0, 0)
                 addButton.setFixedWidth(170)
+                # addButton.setAlignment(Qt.AlignCenter)
                 self.dico_livres_boutons[livre] = addButton
                 self.dico_livres_boutons_cover[livre] = button_cover_livre
 
@@ -130,7 +136,7 @@ class RequetesOpenLibrary:
                     label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
                 verticalLayout.addWidget(label_livre)
                 verticalLayout.addWidget(label_auteur)
-                verticalLayout.addWidget(addButton)
+                verticalLayout.addWidget(addButton, alignment=Qt.AlignCenter)
 
                 if col < 2:  # je vais vérifer ou nous somme dans la grille
                     self.ui.gridLayout_2.addWidget(widget, row, col)
