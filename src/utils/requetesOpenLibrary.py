@@ -21,6 +21,9 @@ from src.classes import Livre
 from src.ui import Ui_MainWindow
 from src.app import  MainWindow
 
+# lien pour les requetes par genre
+# https://www.googleapis.com/books/v1/volumes?q=subject:mySubject
+
 
 class RequetesOpenLibrary:
     def __init__(self, biblio, uiArg):

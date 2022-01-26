@@ -6,7 +6,7 @@ import random
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-
+from wand.image import Image
 import requests
 from PyQt5 import QtWidgets, uic, QtGui
 import asyncio
@@ -59,14 +59,34 @@ class MainWindow:
         self.rol.globalSearch(self.ui.searchLineEdit.text())
 
     def getRandomComic(self):
-        rand = random.randint(1, 2572)
-        reponse = requests.get(f'https://xkcd.com/{rand}/info.0.json')
-        data = json.loads(reponse.text)
-        url = data['img']
-        img = urllib.request.urlopen(url).read()
+        QApplication.processEvents()
+        width = 0
+        height = 0
+
+        while (width < 600 and height > 250) or (height < 160 and width < 550) :
+            rand = random.randint(1, 2572)
+            reponse = requests.get(f'https://xkcd.com/{rand}/info.0.json')
+            data = json.loads(reponse.text)
+            url = data['img']
+            img = urllib.request.urlopen(url).read()
+            f = urllib.request.urlopen(url) #avoir les dimensions de l'image
+            with Image(file=f) as imgf: 
+                width = imgf.width
+                height = imgf.height
+            print(f"width : {width} | height : {height}")
+        if width > 600 :
+            tmp = 600 / width
+            width = width * tmp
+            height = height * tmp
+        if height > 160 :
+            tmp = 160 / height
+            height = tmp * height
+            width = width * tmp
+        print(f"après : width : {width} | height : {height}")
         pixmap = QPixmap()
         pixmap.loadFromData(img)
-        pixmap = pixmap.scaled(600, 160)
+        pixmap = pixmap.scaled(width, height)
+        QApplication.processEvents()
         self.ui.labelImageBlague.setPixmap(pixmap)
 
 
