@@ -353,8 +353,8 @@
          <property name="styleSheet">
           <string notr="true"/>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_10">
-          <item alignment="Qt::AlignHCenter">
+         <layout class="QGridLayout" name="gridlayout_10">
+          <item row="0" column="0" alignment="Qt::AlignHCenter">
            <widget class="QLabel" name="labelRecommendations">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -384,7 +384,62 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="1" column="0">
+           <widget class="QWidget" name="widgetRecommendationGenre" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_12">
+             <item>
+              <widget class="QLabel" name="labelRecommendationParGenre">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Recommendation par genres :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QScrollArea" name="scrollAreaRecommendationGenre">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>150</height>
+                </size>
+               </property>
+               <property name="widgetResizable">
+                <bool>true</bool>
+               </property>
+               <widget class="QWidget" name="scrollAreaRecommendationGenreContent">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>826</width>
+                  <height>145</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_4"/>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0">
            <widget class="QWidget" name="widgetRecommendationParAuteur" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_11">
              <item>
@@ -432,7 +487,7 @@
                      <x>0</x>
                      <y>0</y>
                      <width>808</width>
-                     <height>78</height>
+                     <height>128</height>
                     </rect>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_3"/>
@@ -445,65 +500,10 @@
             </layout>
            </widget>
           </item>
-          <item>
-           <widget class="QWidget" name="widgetRecommendationGenre" native="true">
-            <layout class="QVBoxLayout" name="verticalLayout_12">
-             <item>
-              <widget class="QLabel" name="labelRecommendationParGenre">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Recommendation par genres :</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QScrollArea" name="scrollAreaRecommendationGenre">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>150</height>
-                </size>
-               </property>
-               <property name="widgetResizable">
-                <bool>true</bool>
-               </property>
-               <widget class="QWidget" name="scrollAreaRecommendationGenreContent">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>826</width>
-                  <height>96</height>
-                 </rect>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_4"/>
-               </widget>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
+          <item row="3" column="0">
            <widget class="QWidget" name="widgetBlague" native="true">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -517,7 +517,7 @@
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>300</height>
+              <height>16777215</height>
              </size>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -545,6 +545,12 @@
                <layout class="QGridLayout" name="gridLayout_5">
                 <item row="2" column="0">
                  <widget class="QScrollArea" name="scrollAreaLabelImageBlague">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="widgetResizable">
                    <bool>true</bool>
                   </property>
@@ -554,7 +560,7 @@
                      <x>0</x>
                      <y>0</y>
                      <width>602</width>
-                     <height>239</height>
+                     <height>127</height>
                     </rect>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_6">
@@ -653,8 +659,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>66</width>
-               <height>38</height>
+               <width>844</width>
+               <height>617</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">

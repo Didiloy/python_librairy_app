@@ -1,4 +1,5 @@
 from functools import partial
+import random
 
 import requests
 import urllib.request
@@ -9,17 +10,12 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import QtWidgets, uic, QtGui
-
 import sys
-
-from PyQt5.uic.properties import QtCore
 
 sys.path.append("..") # Adds higher directory to python modules path.
 
 from src.classes import Bibliotheque
 from src.classes import Livre
-from src.ui import Ui_MainWindow
-from src.app import  MainWindow
 
 # lien pour les requetes par genre
 # https://www.googleapis.com/books/v1/volumes?q=subject:mySubject
@@ -53,24 +49,21 @@ class RequetesOpenLibrary:
                     coversLink = volumeInfo['imageLinks']
                     hasCover = True
 
-                if 'authors' not in volumeInfo or volumeInfo['authors'] == None or volumeInfo['authors'] == []:
-                    liste_livre.append(Livre.Livre(str(volumeInfo['title'])))
-                    if hasCover:
-                        liste_livre[i].setCoverID(str(books['id'])) # je met l'id du livre comme id de cover
-                        liste_livre[i].setCoverLink(coversLink['thumbnail'])
-                    i += 1
-                else:
-                    liste_livre.append(Livre.Livre(str(volumeInfo['title'])))
-                    liste_livre[i].setAuthor(str(volumeInfo['authors'][0]))
-                    liste_livre[i].setHasAuthor(True)
-                    if hasCover:
-                        liste_livre[i].setCoverID(str(books['id']))
-                        liste_livre[i].setCoverLink(coversLink['thumbnail'])
-                    if 'publishedDate' in volumeInfo and volumeInfo['publishedDate'] != None: # Si il y a une date de publication
-                        liste_livre[i].setDateDeParution(volumeInfo['publishedDate'])
-                    if 'description' in volumeInfo and volumeInfo['description'] != None : # Si il y a une description
-                        liste_livre[i].setResume(volumeInfo['description'])
-                    i += 1
+                liste_livre.append(Livre.Livre(str(volumeInfo['title'])))
+                if 'authors' in volumeInfo :
+                    if volumeInfo['authors'] != None or volumeInfo['authors'] != [] :
+                        liste_livre[i].setAuthor(str(volumeInfo['authors'][0]))
+                        liste_livre[i].setHasAuthor(True)
+                if hasCover:
+                    liste_livre[i].setCoverID(str(books['id']))
+                    liste_livre[i].setCoverLink(coversLink['thumbnail'])
+                if 'publishedDate' in volumeInfo and volumeInfo['publishedDate'] != None: # Si il y a une date de publication
+                    liste_livre[i].setDateDeParution(volumeInfo['publishedDate'])
+                if 'description' in volumeInfo and volumeInfo['description'] != None : # Si il y a une description
+                    liste_livre[i].setResume(volumeInfo['description'])
+                if 'categories' in volumeInfo and volumeInfo['categories'] != None :
+                    liste_livre[i].setGenre(volumeInfo['categories'][0])
+                i += 1
                 hasCover = False
 
             #####afficher les résultats
@@ -202,3 +195,83 @@ class RequetesOpenLibrary:
         else :
             self.ui.bookDetailDescriptionLabel.setText(livre.getResume()) # Mettre le résumé
         self.ui.stackedWidget.setCurrentWidget(self.ui.bookDetailWidget) # Montrer le panel
+
+    def recommendationGenre(self):
+        #avoir un genre aléatoire dans la bibliothèque
+        nbLivre = len(self.bib.getListeLivre())
+        livreRandom = self.bib.getListeLivre()[random.randint(0, nbLivre-1)]
+        genre = livreRandom.getGenre()
+        print(livreRandom.toString())
+        print(genre)
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=subject:{genre}')
+        # answerJson = os.path.join("..", "answer.json")
+        # fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
+        # fileToWrite.write(response.text)
+        # fileToWrite.close()
+        liste_livre = []
+        i = 0
+        hasCover = False
+        data = json.loads(response.text)  # Transformer le texte en objet json
+        if 'items' in data and data['items'] != None:
+            for books in data['items'] :
+                volumeInfo = books['volumeInfo']
+                if 'imageLinks' in volumeInfo and volumeInfo['imageLinks'] != None:
+                    coversLink = volumeInfo['imageLinks']
+                    hasCover = True
+
+                liste_livre.append(Livre.Livre(str(volumeInfo['title'])))
+                if 'authors' in volumeInfo:
+                    if volumeInfo['authors'] != None or volumeInfo['authors'] != []:
+                        liste_livre[i].setAuthor(str(volumeInfo['authors'][0]))
+                        liste_livre[i].setHasAuthor(True)
+                if hasCover:
+                    liste_livre[i].setCoverID(str(books['id']))
+                    liste_livre[i].setCoverLink(coversLink['thumbnail'])
+                i += 1
+                hasCover = False
+        #####afficher les résultats
+        row = 0
+        col = 0
+        for livre in liste_livre:
+            QApplication.processEvents()
+            widget = QtWidgets.QWidget(self.ui.scrollAreaRecommendationGenre)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
+            widget.setObjectName(f"widgetScrollArearecommendationGenre{row}{col}")
+            verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
+            verticalLayout.setObjectName(f"verticalLayoutRecommendationGenre_{row}{col}")
+            label_cover_livre = QLabel(widget)
+            imgNotFound = os.path.join("..", "assets", "img", "image_not_found.png")
+            pixmapImgNotFound = QPixmap(imgNotFound)
+            pixmapImgNotFound = pixmapImgNotFound.scaled(80, 120)
+
+            if livre.coverId != None:
+                url = livre.getCoverLink()
+                data = urllib.request.urlopen(url).read()
+                pixmap = QPixmap()
+                pixmap.loadFromData(data)
+                pixmap = pixmap.scaled(80, 120)
+                label_cover_livre.setPixmap(pixmap)
+            else:
+                label_cover_livre.setPixmap(pixmapImgNotFound)
+            verticalLayout.addWidget(label_cover_livre)
+
+            label_livre = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre du livre
+            label_livre.setObjectName(f"{livre.getTitre()}")
+            label_livre.setGeometry(100, 150, 50, 50)
+            label_livre.setAlignment(Qt.AlignCenter)
+            label_livre.setWordWrap(True)
+
+            label_auteur = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre de l'auteur
+            label_auteur.setObjectName(f"auteur{row}{col}")
+            label_auteur.setGeometry(100, 150, 50, 50)
+            label_auteur.setAlignment(Qt.AlignCenter)
+            label_auteur.setWordWrap(True)
+
+            label_livre.setText(f"{livre.getTitre()}")
+            if livre.getHasAuthor() == True:
+                label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
+            verticalLayout.addWidget(label_livre)
+            verticalLayout.addWidget(label_auteur)
+
+            self.ui.gridLayout_4.addWidget(widget, row, col)
+            col += 1
+            QApplication.processEvents()

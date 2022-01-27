@@ -18,11 +18,6 @@ def downloadCovers(id, name):
     pathToImg = os.path.join("..", "assets", "img", name)
     urllib.request.urlretrieve(url, pathToImg) #télécharger l'image
 
-def searchXkcd():
-    rand = random.randint(1, 2572)
-    reponse = requests.get(f'https://xkcd.com/{rand}/info.0.json')
-    print(reponse)
-    print(reponse.text)
 
 def getJsonGoogleBooksApi(search):
     response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books')
@@ -99,44 +94,17 @@ def globalSearch(search):
         hasCover = False
 
 
-def authorSearch(search):
-    response = requests.get(f'https://openlibrary.org/search/authors.json?q={search}&mode=everything')
-    answerJson = os.path.join("..", "answer.json")
-    fileToWrite = open(answerJson, 'w+') #Ecrire la reponse au format json dans un fichier json
-    fileToWrite.write(response.text)
-    fileToWrite.close()
-    data = json.loads(response.text) #Transformer le texte en objet json
-    i = 0
-    for datas in data['docs']:
-        if i >= 1:
-            break
-        if 'birth_date' not in datas:
-            auteur = Auteur(str(datas['name']))
-            print(auteur.toString())
-            bib.addAuthor(auteur)  # Ajouter l'auteur a la bibliotheque
-            
-        else:
-            auteur = Auteur(str(datas['name']))
-            auteur.setDateDeNaissance(str(datas['birth_date']))
-            print(auteur.toString())
-            bib.addAuthor(auteur)  # Ajouter l'auteur a la bibliotheque
-        print(f"top work: {datas['top_work']}")
-        i += 1
-    bib.writeToJSONFile()
+
 def main():
     print("que voulez vous rechercher ?")
     print("-"*20)
-    print("1.livre\n2.auteur\n3. remplir la bibliotheque\n4. réinitialiser la bibliotheque\n5. rechercher avec google books\n6. recherche xkcd")
+    print("1.livre\n3. remplir la bibliotheque\n4. réinitialiser la bibliotheque\n5. rechercher avec google books\n")
     print("-"*20)
     choix = input()
     if choix == '1' :
         print("que voulez vous rechercher ? ")
         search = input()
         globalSearch(search)
-    elif choix == '2':
-        print("que voulez vous rechercher ?")
-        search = input()
-        authorSearch(search)
     elif choix == '3':
         print("remplir avec quel livre")
         search = input()
@@ -147,8 +115,6 @@ def main():
         print("rechercher quel livre")
         search = input()
         getJsonGoogleBooksApi(search)
-    elif choix == '6':
-        searchXkcd()
     #bib.toString()
 
 main()

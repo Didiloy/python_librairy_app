@@ -64,6 +64,8 @@ class Bibliotheque:
                 livre.setResume(str(books['resume']))
             if 'coverLink' in books and books['coverLink'] != None:
                 livre.setCoverLink(str(books['coverLink']))
+            if 'genre' in books and books['genre'] != None:
+                livre.setGenre(str(books['genre']))
             self.liste_livre.append(livre)
             # print(f"{livre} : {livre.addToBib()}")
             #####################################################

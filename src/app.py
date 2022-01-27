@@ -38,11 +38,15 @@ class MainWindow:
 
         self.ui.searchButton.clicked.connect(self.search)  # j'ajoute la fonction pour rechercher au bouton
 
+        self.showBiblio()
+
     def getUi(self):
         return self.ui
 
     def showHome(self): # Recommendations
         self.getRandomComic()
+        QApplication.processEvents()
+        self.rol.recommendationGenre()
         QApplication.processEvents()
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)
 
