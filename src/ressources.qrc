@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="images">
+    <file>../assets/res/addBook.png</file>
+    <file>../assets/res/trash.png</file>
+    <file>../assets/res/turn-left.png</file>
+    <file>../assets/res/bookshelf.png</file>
+    <file>../assets/res/recommendation.png</file>
+    <file>../assets/res/search.png</file>
+  </qresource>
+</RCC>

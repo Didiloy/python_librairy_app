@@ -9,7 +9,7 @@ import os
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from PyQt5 import QtWidgets, uic, QtGui
+from PyQt5 import QtWidgets, uic, QtGui, QtCore
 import sys
 
 sys.path.append("..") # Adds higher directory to python modules path.
@@ -116,10 +116,12 @@ class RequetesOpenLibrary:
 
                 addButton = QtWidgets.QPushButton(widget)
                 addButton.setObjectName(f"addButton{row}{col}")
-                # print(addButton.objectName())
                 addButton.setText("ajouter à la bibliothèque")
-                # addButton.setGeometry(50, 30, 0, 0)
-                addButton.setFixedWidth(170)
+                icon = QtGui.QIcon()
+                icon.addPixmap(QtGui.QPixmap(":/images/assets/res/addBook.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                addButton.setIcon(icon)
+                addButton.setIconSize(QtCore.QSize(20, 20))
+                addButton.setMinimumSize(QtCore.QSize(170, 0))
                 # addButton.setAlignment(Qt.AlignCenter)
                 self.dico_livres_boutons[livre] = addButton
                 self.dico_livres_boutons_cover[livre] = button_cover_livre

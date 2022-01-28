@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from wand.image import Image
 import requests
-from PyQt5 import QtWidgets, uic, QtGui
+from PyQt5 import QtWidgets, uic, QtGui, QtCore
 from qt_material import apply_stylesheet
 import asyncio
 import time
@@ -16,6 +16,7 @@ import sys
 from classes import Livre, Auteur, Bibliotheque
 from ui import Ui_MainWindow
 import utils.requetesOpenLibrary as rol
+import ressources_rc
 
 
 class MainWindow:
@@ -30,9 +31,12 @@ class MainWindow:
         self.dico_boutons_supprimer_livre = {}
         self.dico_livres_boutons_cover = {}
 
-        self.ui.leftPanelButtonBibliotheque.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
-        self.ui.leftPanelButtonHome.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
-        self.ui.leftPanelButtonSearch.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
+        # add style to components
+        # self.ui.leftPanelButtonBibliotheque.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
+        # self.ui.leftPanelButtonHome.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
+        # self.ui.leftPanelButtonSearch.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
+        # self.ui.bookDetaillRetourButton.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
+        # self.ui.searchButton.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
@@ -146,8 +150,11 @@ class MainWindow:
             RmButton.setObjectName(f"RmButton{row}{col}")
             # print(addButton.objectName())
             RmButton.setText("supprimer")
-            # addButton.setGeometry(50, 30, 0, 0)
-            RmButton.setFixedWidth(170)
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(":/images/assets/res/trash.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            RmButton.setIcon(icon)
+            RmButton.setIconSize(QtCore.QSize(20, 20))
+            RmButton.setMinimumSize(QtCore.QSize(170, 0))
             self.dico_boutons_supprimer_livre[livre] = RmButton
             self.dico_livres_boutons_cover[livre] = button_cover_livre
 
