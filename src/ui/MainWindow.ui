@@ -85,6 +85,16 @@
             <property name="text">
              <string>Rechercher</string>
             </property>
+            <property name="icon">
+             <iconset resource="../ressources.qrc">
+              <normaloff>:/images/assets/res/search.png</normaloff>:/images/assets/res/search.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
            </widget>
           </item>
           <item>
@@ -102,6 +112,16 @@
             </property>
             <property name="text">
              <string>Recommendations</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../ressources.qrc">
+              <normaloff>:/images/assets/res/recommendation.png</normaloff>:/images/assets/res/recommendation.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -122,8 +142,14 @@
              <string>Bibliothèque</string>
             </property>
             <property name="icon">
-             <iconset resource="bookshelf_white.qrc">
-              <normaloff>:/bookshelf_white/assets/res/bookshelf-modified.png</normaloff>:/bookshelf_white/assets/res/bookshelf-modified.png</iconset>
+             <iconset resource="../ressources.qrc">
+              <normaloff>:/images/assets/res/bookshelf.png</normaloff>:/images/assets/res/bookshelf.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -703,7 +729,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="bookshelf_white.qrc"/>
+  <include location="../ressources.qrc"/>
  </resources>
  <connections/>
 </ui>
