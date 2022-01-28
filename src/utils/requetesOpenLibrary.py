@@ -33,7 +33,7 @@ class RequetesOpenLibrary:
         search = self.ui.searchLineEdit.text()
         self.ui.searchLineEdit.setText("")
         # Making a get request
-        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books&maxResults=30')
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{search}&printType=books&maxResults=30&orderBy=relevance')
         answerJson = os.path.join("..", "answer.json")
         fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
         fileToWrite.write(response.text)
@@ -62,7 +62,7 @@ class RequetesOpenLibrary:
                 if 'description' in volumeInfo and volumeInfo['description'] != None : # Si il y a une description
                     liste_livre[i].setResume(volumeInfo['description'])
                 if 'categories' in volumeInfo and volumeInfo['categories'] != None :
-                    liste_livre[i].setGenre(volumeInfo['categories'][0])
+                    liste_livre[i].setGenre(volumeInfo['categories']) # enregistrer la liste des genres
                 i += 1
                 hasCover = False
 
@@ -199,15 +199,14 @@ class RequetesOpenLibrary:
     def recommendationGenre(self):
         #avoir un genre aléatoire dans la bibliothèque
         nbLivre = len(self.bib.getListeLivre())
-        livreRandom = self.bib.getListeLivre()[random.randint(0, nbLivre-1)]
-        genre = livreRandom.getGenre()
+        genre = None
+        while genre == None :
+            livreRandom = self.bib.getListeLivre()[random.randint(0, nbLivre-1)]
+            genre = livreRandom.getGenre()[random.randint(0, len(livreRandom.getGenre())-1)]
         print(livreRandom.toString())
-        print(genre)
+        print(livreRandom.getGenre())
+        print(f"genre: {genre}")
         response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=subject:{genre}')
-        # answerJson = os.path.join("..", "answer.json")
-        # fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
-        # fileToWrite.write(response.text)
-        # fileToWrite.close()
         liste_livre = []
         i = 0
         hasCover = False

@@ -65,7 +65,7 @@ class Bibliotheque:
             if 'coverLink' in books and books['coverLink'] != None:
                 livre.setCoverLink(str(books['coverLink']))
             if 'genre' in books and books['genre'] != None:
-                livre.setGenre(str(books['genre']))
+                livre.setGenre((books['genre'])) # c'est un tableau normalement
             self.liste_livre.append(livre)
             # print(f"{livre} : {livre.addToBib()}")
             #####################################################
