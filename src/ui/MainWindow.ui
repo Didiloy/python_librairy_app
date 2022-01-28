@@ -121,6 +121,10 @@
             <property name="text">
              <string>Bibliothèque</string>
             </property>
+            <property name="icon">
+             <iconset resource="bookshelf_white.qrc">
+              <normaloff>:/bookshelf_white/assets/res/bookshelf-modified.png</normaloff>:/bookshelf_white/assets/res/bookshelf-modified.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -428,8 +432,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>826</width>
-                  <height>145</height>
+                  <width>98</width>
+                  <height>28</height>
                  </rect>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_4"/>
@@ -486,8 +490,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>808</width>
-                     <height>128</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_3"/>
@@ -559,8 +563,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>602</width>
-                     <height>127</height>
+                     <width>98</width>
+                     <height>34</height>
                     </rect>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_6">
@@ -659,8 +663,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>844</width>
-               <height>617</height>
+               <width>98</width>
+               <height>38</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">
@@ -698,6 +702,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="bookshelf_white.qrc"/>
+ </resources>
  <connections/>
 </ui>

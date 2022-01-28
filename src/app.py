@@ -9,6 +9,7 @@ from PyQt5.QtCore import *
 from wand.image import Image
 import requests
 from PyQt5 import QtWidgets, uic, QtGui
+from qt_material import apply_stylesheet
 import asyncio
 import time
 import sys
@@ -28,6 +29,10 @@ class MainWindow:
         self.rol = rol.RequetesOpenLibrary(self.bib, self.ui)
         self.dico_boutons_supprimer_livre = {}
         self.dico_livres_boutons_cover = {}
+
+        self.ui.leftPanelButtonBibliotheque.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
+        self.ui.leftPanelButtonHome.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
+        self.ui.leftPanelButtonSearch.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
@@ -212,6 +217,7 @@ if __name__ == '__main__':
     qss = pathToQss
     with open(qss, "r") as fh:
         app.setStyleSheet(fh.read())
+    # apply_stylesheet(app, theme='dark_purple.xml')
     main_win = MainWindow()
     main_win.show()
     sys.exit(app.exec_())
