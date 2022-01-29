@@ -199,26 +199,47 @@ class RequetesOpenLibrary:
         self.ui.stackedWidget.setCurrentWidget(self.ui.bookDetailWidget) # Montrer le panel
 
     def recommendationGenre(self):
-        # mettre en mémoire les mots dans le fichier word_in_categorie
+        # je vais récuperer tout les mots par catégories qui sont dans le fichier word_in_categories.json
+        # je vais analyser le titre du livre et le décomposer en mots de plus de 3 lettres
+        # si les mots du titre ne sont pas présent dans ma liste je les ajoute et je fait une recherche
+        # sinon je fait une recherche avec un des mots
+        # j'affiche les résultats
+
+        # mettre en mémoire les mots contenus dans le fichier word_in_categories
         wordJsonFile = os.path.join("utils" ,"word_in_categories.json")
-        f = open(wordJsonFile) # ouvrir le ficheir json
-        data = json.load(f)  # Transformer le texte en objet json
+        f = open(wordJsonFile) # ouvrir le fichier json
+        dataInJson = json.load(f)  # Transformer le texte en objet json
         f.close()
 
-        #avoir un genre aléatoire dans la bibliothèque
+        # avoir un genre aléatoire dans la bibliothèque
         nbLivre = len(self.bib.getListeLivre())
         genre = None
         while genre == None :
             livreRandom = self.bib.getListeLivre()[random.randint(0, nbLivre-1)]
             genre = livreRandom.getGenre()[random.randint(0, len(livreRandom.getGenre())-1)]
+
+        titre = livreRandom.getTitre()
+        print(titre)
+        liste_mots_titre = []
+        for mot in titre.split() : # Pour chaque mot du titre je vérifie si il est supérieur a 3 et si oui je l'ajoute a la liste
+            if len(mot) > 3 :
+                print(mot)
+                liste_mots_titre.append(mot)
+
         print(livreRandom.toString())
-        print(livreRandom.getGenre())
+        # print(livreRandom.getGenre())
         print(f"genre: {genre}")
 
         # #Vérifier si j'ai des mots pour ce genre
-        if genre in data and data[genre] != None : # Si ça existe dans le fichier word_in_categories.json
-            print(data[genre])
-            motRandom = data[genre][random.randint(0, len(data[genre])-1)]
+        if genre in dataInJson and dataInJson[genre] != None : # Si ça existe dans le fichier word_in_categories.json
+            print(dataInJson[genre])
+            if len(liste_mots_titre) > 0 :
+                for mot in liste_mots_titre : # si un mot du titre n'est pas dans la liste de mots du fichier json je l'ajoute
+                    if mot not in dataInJson[genre] :
+                        dataInJson[genre].append(mot)
+                motRandom = liste_mots_titre[random.randint(0, len(liste_mots_titre)-1)]
+            else :
+                motRandom = dataInJson[genre][random.randint(0, len(dataInJson[genre]) - 1)]
             print(motRandom)
             response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{motRandom}&subject:{genre}')
         else : # Si j'en ai pas je fait juste une recherche du genre
@@ -294,3 +315,12 @@ class RequetesOpenLibrary:
             self.ui.gridLayout_4.addWidget(widget, row, col)
             col += 1
             QApplication.processEvents()
+
+        #sauvegarder les nouveaux mots dans le fichier word_in_categories.json
+        dataToSave = {}  # dictionnaire pour ecrire au format json
+        for listes in dataInJson :
+            dataToSave[listes] = dataInJson[listes]
+
+        with open(wordJsonFile, 'w') as fp:
+            json.dump(dataToSave, fp)
+        print("saved words in word_in_categories")
