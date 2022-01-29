@@ -261,6 +261,8 @@ class RequetesOpenLibrary:
                 if hasCover:
                     liste_livre[i].setCoverID(str(books['id']))
                     liste_livre[i].setCoverLink(coversLink['thumbnail'])
+                if 'description' in volumeInfo and volumeInfo['description'] != None : # Si il y a une description
+                    liste_livre[i].setResume(volumeInfo['description'])
                 i += 1
                 hasCover = False
         #####afficher les résultats
@@ -278,7 +280,8 @@ class RequetesOpenLibrary:
                 widget.setObjectName(f"widgetScrollArearecommendationGenre{row}{col}")
                 verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
                 verticalLayout.setObjectName(f"verticalLayoutRecommendationGenre_{row}{col}")
-                label_cover_livre = QLabel(widget)
+                button_cover_livre = QtWidgets.QPushButton(widget)
+                button_cover_livre.setStyleSheet("border-style: none")
                 imgNotFound = os.path.join("..", "assets", "img", "image_not_found.png")
                 pixmapImgNotFound = QPixmap(imgNotFound)
                 pixmapImgNotFound = pixmapImgNotFound.scaled(80, 120)
@@ -288,11 +291,13 @@ class RequetesOpenLibrary:
                     data = urllib.request.urlopen(url).read()
                     pixmap = QPixmap()
                     pixmap.loadFromData(data)
-                    pixmap = pixmap.scaled(80, 120)
-                    label_cover_livre.setPixmap(pixmap)
+                    pixmap = pixmap.scaled(100, 140)
+                    button_cover_livre.setIcon(QtGui.QIcon(pixmap))
+                    button_cover_livre.setIconSize(QSize(100, 140))
                 else:
-                    label_cover_livre.setPixmap(pixmapImgNotFound)
-                verticalLayout.addWidget(label_cover_livre)
+                    button_cover_livre.setIcon(QtGui.QIcon(pixmapImgNotFound))
+                    button_cover_livre.setIconSize(QSize(100, 140))
+                verticalLayout.addWidget(button_cover_livre)
 
                 label_livre = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre du livre
                 label_livre.setObjectName(f"{livre.getTitre()}")
@@ -306,15 +311,23 @@ class RequetesOpenLibrary:
                 label_auteur.setAlignment(Qt.AlignCenter)
                 label_auteur.setWordWrap(True)
 
+                self.dico_livres_boutons_cover[livre] = button_cover_livre
+
                 label_livre.setText(f"{livre.getTitre()}")
                 if livre.getHasAuthor() == True:
                     label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
                 verticalLayout.addWidget(label_livre)
                 verticalLayout.addWidget(label_auteur)
 
-                self.ui.gridLayout_4.addWidget(widget, row, col)
-                col += 1
+                if col < 2:  # je vais vérifer ou nous somme dans la grille
+                    self.ui.gridLayout_8.addWidget(widget, row, col)
+                    col += 1
+                elif col == 2:  # si la colone  c'est 4 on ajoute et puis on change de ligne
+                    self.ui.gridLayout_8.addWidget(widget, row, col)
+                    col = 0
+                    row += 1
                 QApplication.processEvents()
+                self.addBoutonCoverLivreListener()
 
         #sauvegarder les nouveaux mots dans le fichier word_in_categories.json
         dataToSave = {}  # dictionnaire pour ecrire au format json

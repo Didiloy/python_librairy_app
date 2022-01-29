@@ -248,7 +248,7 @@ QPushButton:focus {
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>2</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="searchWidget">
          <property name="styleSheet">
@@ -830,8 +830,8 @@ QFrame:hover {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>844</width>
-               <height>617</height>
+               <width>862</width>
+               <height>635</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">
@@ -842,6 +842,68 @@ QFrame:hover {
               </item>
               <item row="0" column="0">
                <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Maximum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="recommendationGenreWidget">
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QLabel" name="recommendationGenreLabel">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Mes recommandations par genre</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QScrollArea" name="scrollAreaRecommendationGenre">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaRecommendationGenreWidgetContent">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>862</width>
+               <height>635</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="1">
+               <widget class="QWidget" name="widget_3" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_10"/>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <spacer name="horizontalSpacer_4">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>

@@ -25,46 +25,51 @@ class MainWindow:
         self.main_win.setWindowTitle("Bibliothèque")
         self.ui = Ui_MainWindow.Ui_MainWindow()
         self.ui.setupUi(self.main_win)
+        self.currentPanel = None # Retenir le panel dans lequel nous somme pour le bouton retour en arrière du panel bookDetail
 
         self.bib = Bibliotheque.Bibliotheque().getInstance()
         self.rol = rol.RequetesOpenLibrary(self.bib, self.ui)
         self.dico_boutons_supprimer_livre = {}
         self.dico_livres_boutons_cover = {}
 
-        # add style to components
-        # self.ui.leftPanelButtonBibliotheque.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
-        # self.ui.leftPanelButtonHome.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
-        # self.ui.leftPanelButtonSearch.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
-        # self.ui.bookDetaillRetourButton.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
-        # self.ui.searchButton.setStyleSheet("QPushButton {border : none; border-radius : 15px} QPushButton::hover{background-color : #545454}")
-
-        self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)  # je met le panel de base au milieu
+        self.ui.stackedWidget.setCurrentWidget(self.ui.bibliothequeWidget)  # je met le panel de base au milieu
         self.ui.leftPanelButtonHome.clicked.connect(self.showHome)  # j'ajoute une action au bouton pour afficher le bon panel
         self.ui.leftPanelButtonSearch.clicked.connect(self.showSearch)  # j'ajoute une action au bouton pour afficher le bon panel
-        self.ui.bookDetaillRetourButton.clicked.connect(self.showSearch) # afficher le panel de recherche quand le bouton est cliqué
+        self.ui.bookDetaillRetourButton.clicked.connect(self.returnToLastPanel) # afficher le panel de recherche quand le bouton est cliqué
         self.ui.leftPanelButtonBibliotheque.clicked.connect(self.showBiblio)  # j'ajoute une action au bouton pour afficher le bon panel
         self.ui.buttonBlague.clicked.connect(self.getRandomComic)
-
+        self.ui.buttonRecommendationGenre.clicked.connect(self.showRecommendationGenre)
         self.ui.searchButton.clicked.connect(self.search)  # j'ajoute la fonction pour rechercher au bouton
 
         self.showBiblio()
+
+    def returnToLastPanel(self):
+        self.ui.stackedWidget.setCurrentWidget(self.currentPanel)
 
     def getUi(self):
         return self.ui
 
     def showHome(self): # Recommendations
-        # self.getRandomComic()
-        # QApplication.processEvents()
-        # self.rol.recommendationGenre()
-        # QApplication.processEvents()
+        self.getRandomComic()
+        QApplication.processEvents()
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)
+        self.currentPanel = self.ui.homeWidget
+
+    def showRecommendationGenre(self):
+        QApplication.processEvents()
+        self.rol.recommendationGenre()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.recommendationGenreWidget)
+        self.currentPanel = self.ui.recommendationGenreWidget
+
 
     def showSearch(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.searchWidget)
+        self.currentPanel = self.ui.searchWidget
 
     def showBiblio(self):
         self.updateBib()
         self.ui.stackedWidget.setCurrentWidget(self.ui.bibliothequeWidget)
+        self.currentPanel = self.ui.bibliothequeWidget
 
     def search(self):
         self.ui.labelRechercheEnCours.setText("Recherche en cours..")
