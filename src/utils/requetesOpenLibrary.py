@@ -33,7 +33,7 @@ class RequetesOpenLibrary:
         search = self.ui.searchLineEdit.text()
         self.ui.searchLineEdit.setText("")
         # Making a get request
-        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{search}&printType=books&maxResults=30&orderBy=relevance')
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={search}&printType=books&maxResults=30&orderBy=relevance')
         answerJson = os.path.join("..", "answer.json")
         fileToWrite = open(answerJson, 'w+')  # Ecrire la reponse au format json dans un fichier json
         fileToWrite.write(response.text)
@@ -199,6 +199,12 @@ class RequetesOpenLibrary:
         self.ui.stackedWidget.setCurrentWidget(self.ui.bookDetailWidget) # Montrer le panel
 
     def recommendationGenre(self):
+        # mettre en mémoire les mots dans le fichier word_in_categorie
+        wordJsonFile = os.path.join("utils" ,"word_in_categories.json")
+        f = open(wordJsonFile) # ouvrir le ficheir json
+        data = json.load(f)  # Transformer le texte en objet json
+        f.close()
+
         #avoir un genre aléatoire dans la bibliothèque
         nbLivre = len(self.bib.getListeLivre())
         genre = None
@@ -208,7 +214,19 @@ class RequetesOpenLibrary:
         print(livreRandom.toString())
         print(livreRandom.getGenre())
         print(f"genre: {genre}")
-        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=subject:{genre}')
+
+        # #Vérifier si j'ai des mots pour ce genre
+        if genre in data and data[genre] != None : # Si ça existe dans le fichier word_in_categories.json
+            print(data[genre])
+            motRandom = data[genre][random.randint(0, len(data[genre])-1)]
+            print(motRandom)
+            response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{motRandom}&subject:{genre}')
+        else : # Si j'en ai pas je fait juste une recherche du genre
+            print("pas présent")
+            response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=subject:{genre}')
+
+        # Gérer l'affichage
+        # response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{motRandom}&subject:{genre}')
         liste_livre = []
         i = 0
         hasCover = False
