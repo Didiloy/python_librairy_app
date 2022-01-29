@@ -74,13 +74,25 @@ class RequetesOpenLibrary:
             for livre in liste_livre:
                 self.ui.labelRechercheEnCours.setText("Recherche en cours...")
                 QApplication.processEvents()
-                widget = QtWidgets.QWidget(self.ui.scrollAreaWidgetContents)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
+                widget = QtWidgets.QFrame(self.ui.scrollAreaRecommendationGenre)
+                widget.setStyleSheet("QFrame {\n"
+                                     "    border: none;\n"
+                                     "    border-radius: 10px;\n"
+                                     "    background-color: #404040;\n"
+                                     "    margin: 0px 10px opx 10px;\n"
+                                     "}\n"
+                                     "\n"
+                                     "QFrame:hover {\n"
+                                     "    border: 1px solid white;\n"
+                                     "}")
+                widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+                widget.setFrameShadow(QtWidgets.QFrame.Raised)
                 widget.setObjectName(f"widgetScrollAreaAnswer{row}{col}")
                 verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
                 verticalLayout.setObjectName(f"verticalLayoutSearch_{row}{col}")
                 # label_cover_livre = QLabel(widget)
                 button_cover_livre = QtWidgets.QPushButton(widget)
-                button_cover_livre.setStyleSheet("border-style: none")
+                button_cover_livre.setStyleSheet("border-style: none; background-color : #404040")
                 imgNotFound = os.path.join("..","assets","img","image_not_found.png")
                 # pixmapImgNotFound = QPixmap('../assets/img/image_not_found.png')
                 pixmapImgNotFound = QPixmap(imgNotFound)
@@ -107,12 +119,14 @@ class RequetesOpenLibrary:
                 label_livre.setGeometry(100, 150, 50, 50)
                 label_livre.setAlignment(Qt.AlignCenter)
                 label_livre.setWordWrap(True)
+                label_livre.setStyleSheet("border : none")
 
                 label_auteur = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre de l'auteur
                 label_auteur.setObjectName(f"auteur{row}{col}")
                 label_auteur.setGeometry(100, 150, 50, 50)
                 label_auteur.setAlignment(Qt.AlignCenter)
                 label_auteur.setWordWrap(True)
+                label_auteur.setStyleSheet("border : none")
 
                 addButton = QtWidgets.QPushButton(widget)
                 addButton.setObjectName(f"addButton{row}{col}")
@@ -276,12 +290,28 @@ class RequetesOpenLibrary:
                     break
             if not inBib : # Si le livre n'est pas déjà dans ma bibliothèque
                 QApplication.processEvents()
-                widget = QtWidgets.QWidget(self.ui.scrollAreaRecommendationGenre)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
+                # widget = QtWidgets.QWidget(self.ui.scrollAreaRecommendationGenre)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
+                # widget.setObjectName(f"widgetScrollArearecommendationGenre{row}{col}")
+
+                widget = QtWidgets.QFrame(self.ui.scrollAreaRecommendationGenre)
+                widget.setStyleSheet("QFrame {\n"
+                                                            "    border: none;\n"
+                                                            "    border-radius: 10px;\n"
+                                                            "    background-color: #404040;\n"
+                                                            "    margin: 0px 10px opx 10px;\n"
+                                                            "}\n"
+                                                            "\n"
+                                                            "QFrame:hover {\n"
+                                                            "    border: 1px solid white;\n"
+                                                            "}")
+                widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+                widget.setFrameShadow(QtWidgets.QFrame.Raised)
                 widget.setObjectName(f"widgetScrollArearecommendationGenre{row}{col}")
+
                 verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
                 verticalLayout.setObjectName(f"verticalLayoutRecommendationGenre_{row}{col}")
                 button_cover_livre = QtWidgets.QPushButton(widget)
-                button_cover_livre.setStyleSheet("border-style: none")
+                button_cover_livre.setStyleSheet("border-style: none; background-color : #404040")
                 imgNotFound = os.path.join("..", "assets", "img", "image_not_found.png")
                 pixmapImgNotFound = QPixmap(imgNotFound)
                 pixmapImgNotFound = pixmapImgNotFound.scaled(80, 120)
@@ -304,12 +334,14 @@ class RequetesOpenLibrary:
                 label_livre.setGeometry(100, 150, 50, 50)
                 label_livre.setAlignment(Qt.AlignCenter)
                 label_livre.setWordWrap(True)
+                label_livre.setStyleSheet("border : none")
 
                 label_auteur = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre de l'auteur
                 label_auteur.setObjectName(f"auteur{row}{col}")
                 label_auteur.setGeometry(100, 150, 50, 50)
                 label_auteur.setAlignment(Qt.AlignCenter)
                 label_auteur.setWordWrap(True)
+                label_auteur.setStyleSheet("border : none")
 
                 self.dico_livres_boutons_cover[livre] = button_cover_livre
 
