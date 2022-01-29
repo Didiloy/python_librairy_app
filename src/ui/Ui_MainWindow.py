@@ -207,71 +207,6 @@ class Ui_MainWindow(object):
         self.labelRecommendations.setFont(font)
         self.labelRecommendations.setObjectName("labelRecommendations")
         self.gridlayout_10.addWidget(self.labelRecommendations, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
-        self.widgetRecommendationGenre = QtWidgets.QWidget(self.homeWidget)
-        self.widgetRecommendationGenre.setObjectName("widgetRecommendationGenre")
-        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.widgetRecommendationGenre)
-        self.verticalLayout_12.setObjectName("verticalLayout_12")
-        self.labelRecommendationParGenre = QtWidgets.QLabel(self.widgetRecommendationGenre)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelRecommendationParGenre.sizePolicy().hasHeightForWidth())
-        self.labelRecommendationParGenre.setSizePolicy(sizePolicy)
-        self.labelRecommendationParGenre.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.labelRecommendationParGenre.setObjectName("labelRecommendationParGenre")
-        self.verticalLayout_12.addWidget(self.labelRecommendationParGenre)
-        self.scrollAreaRecommendationGenre = QtWidgets.QScrollArea(self.widgetRecommendationGenre)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.scrollAreaRecommendationGenre.sizePolicy().hasHeightForWidth())
-        self.scrollAreaRecommendationGenre.setSizePolicy(sizePolicy)
-        self.scrollAreaRecommendationGenre.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.scrollAreaRecommendationGenre.setWidgetResizable(True)
-        self.scrollAreaRecommendationGenre.setObjectName("scrollAreaRecommendationGenre")
-        self.scrollAreaRecommendationGenreContent = QtWidgets.QWidget()
-        self.scrollAreaRecommendationGenreContent.setGeometry(QtCore.QRect(0, 0, 826, 145))
-        self.scrollAreaRecommendationGenreContent.setObjectName("scrollAreaRecommendationGenreContent")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.scrollAreaRecommendationGenreContent)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.scrollAreaRecommendationGenre.setWidget(self.scrollAreaRecommendationGenreContent)
-        self.verticalLayout_12.addWidget(self.scrollAreaRecommendationGenre)
-        self.gridlayout_10.addWidget(self.widgetRecommendationGenre, 1, 0, 1, 1)
-        self.widgetRecommendationParAuteur = QtWidgets.QWidget(self.homeWidget)
-        self.widgetRecommendationParAuteur.setObjectName("widgetRecommendationParAuteur")
-        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.widgetRecommendationParAuteur)
-        self.verticalLayout_11.setObjectName("verticalLayout_11")
-        self.label = QtWidgets.QLabel(self.widgetRecommendationParAuteur)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.label.setObjectName("label")
-        self.verticalLayout_11.addWidget(self.label)
-        self.widgetCrollAreaRecommendationAuteur = QtWidgets.QWidget(self.widgetRecommendationParAuteur)
-        self.widgetCrollAreaRecommendationAuteur.setObjectName("widgetCrollAreaRecommendationAuteur")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widgetCrollAreaRecommendationAuteur)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.scrollAreaRecommendationAuteur = QtWidgets.QScrollArea(self.widgetCrollAreaRecommendationAuteur)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.scrollAreaRecommendationAuteur.sizePolicy().hasHeightForWidth())
-        self.scrollAreaRecommendationAuteur.setSizePolicy(sizePolicy)
-        self.scrollAreaRecommendationAuteur.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.scrollAreaRecommendationAuteur.setWidgetResizable(True)
-        self.scrollAreaRecommendationAuteur.setObjectName("scrollAreaRecommendationAuteur")
-        self.scrollAreaRecommendationAuteurContent = QtWidgets.QWidget()
-        self.scrollAreaRecommendationAuteurContent.setGeometry(QtCore.QRect(0, 0, 808, 128))
-        self.scrollAreaRecommendationAuteurContent.setObjectName("scrollAreaRecommendationAuteurContent")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.scrollAreaRecommendationAuteurContent)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.scrollAreaRecommendationAuteur.setWidget(self.scrollAreaRecommendationAuteurContent)
-        self.horizontalLayout_3.addWidget(self.scrollAreaRecommendationAuteur)
-        self.verticalLayout_11.addWidget(self.widgetCrollAreaRecommendationAuteur)
-        self.gridlayout_10.addWidget(self.widgetRecommendationParAuteur, 2, 0, 1, 1)
         self.widgetBlague = QtWidgets.QWidget(self.homeWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -305,7 +240,7 @@ class Ui_MainWindow(object):
         self.scrollAreaLabelImageBlague.setWidgetResizable(True)
         self.scrollAreaLabelImageBlague.setObjectName("scrollAreaLabelImageBlague")
         self.scrollAreaLabelImageBlagueWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaLabelImageBlagueWidgetContents.setGeometry(QtCore.QRect(0, 0, 602, 127))
+        self.scrollAreaLabelImageBlagueWidgetContents.setGeometry(QtCore.QRect(0, 0, 602, 231))
         self.scrollAreaLabelImageBlagueWidgetContents.setObjectName("scrollAreaLabelImageBlagueWidgetContents")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.scrollAreaLabelImageBlagueWidgetContents)
         self.gridLayout_6.setObjectName("gridLayout_6")
@@ -335,7 +270,86 @@ class Ui_MainWindow(object):
         self.buttonBlague.setObjectName("buttonBlague")
         self.gridLayout_5.addWidget(self.buttonBlague, 2, 1, 1, 1, QtCore.Qt.AlignBottom)
         self.verticalLayout_13.addWidget(self.widget_2)
-        self.gridlayout_10.addWidget(self.widgetBlague, 3, 0, 1, 1)
+        self.gridlayout_10.addWidget(self.widgetBlague, 2, 0, 1, 1)
+        self.widgetFramesRecommendations = QtWidgets.QWidget(self.homeWidget)
+        self.widgetFramesRecommendations.setObjectName("widgetFramesRecommendations")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.widgetFramesRecommendations)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.frameRecommendationGenre = QtWidgets.QFrame(self.widgetFramesRecommendations)
+        self.frameRecommendationGenre.setStyleSheet("QFrame {\n"
+"    border: 1px solid #606060;\n"
+"    border-radius: 15px;\n"
+"    background-color: #323232;\n"
+"    margin: 0px 10px opx 10px;\n"
+"}\n"
+"\n"
+"QFrame:hover {\n"
+"    border: 2px solid white;\n"
+"}")
+        self.frameRecommendationGenre.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frameRecommendationGenre.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frameRecommendationGenre.setObjectName("frameRecommendationGenre")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.frameRecommendationGenre)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.buttonRecommendationGenre = QtWidgets.QPushButton(self.frameRecommendationGenre)
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.buttonRecommendationGenre.setFont(font)
+        self.buttonRecommendationGenre.setStyleSheet("QPushButton{\n"
+"    background-color : #323232;\n"
+"    border-radius: 15px\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color : #5a5a5a;\n"
+"}")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/images/assets/res/romantic-novel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.buttonRecommendationGenre.setIcon(icon4)
+        self.buttonRecommendationGenre.setIconSize(QtCore.QSize(50, 50))
+        self.buttonRecommendationGenre.setObjectName("buttonRecommendationGenre")
+        self.gridLayout_4.addWidget(self.buttonRecommendationGenre, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.frameRecommendationGenre, 0, 0, 1, 1)
+        self.frameRecommendationAuteur = QtWidgets.QFrame(self.widgetFramesRecommendations)
+        self.frameRecommendationAuteur.setStyleSheet("QFrame {\n"
+"    border: 1px solid #606060;\n"
+"    border-radius: 15px;\n"
+"    background-color: #323232;\n"
+"    margin: 0px 10px opx 10px;\n"
+"}\n"
+"\n"
+"QFrame:hover {\n"
+"    border: 2px solid white;\n"
+"}")
+        self.frameRecommendationAuteur.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frameRecommendationAuteur.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frameRecommendationAuteur.setObjectName("frameRecommendationAuteur")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.frameRecommendationAuteur)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.buttonRecommendationAuteur = QtWidgets.QPushButton(self.frameRecommendationAuteur)
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.buttonRecommendationAuteur.setFont(font)
+        self.buttonRecommendationAuteur.setStyleSheet("QPushButton{\n"
+"    background-color : #323232;\n"
+"    border-radius: 15px\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color : #5a5a5a;\n"
+"}")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/images/assets/res/writer.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.buttonRecommendationAuteur.setIcon(icon5)
+        self.buttonRecommendationAuteur.setIconSize(QtCore.QSize(50, 50))
+        self.buttonRecommendationAuteur.setObjectName("buttonRecommendationAuteur")
+        self.gridLayout_7.addWidget(self.buttonRecommendationAuteur, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.frameRecommendationAuteur, 0, 1, 1, 1)
+        self.gridlayout_10.addWidget(self.widgetFramesRecommendations, 1, 0, 1, 1)
         self.stackedWidget.addWidget(self.homeWidget)
         self.bibliothequeWidget = QtWidgets.QWidget()
         self.bibliothequeWidget.setStyleSheet("")
@@ -356,7 +370,7 @@ class Ui_MainWindow(object):
         self.scrollAreaBibliotheque.setWidgetResizable(True)
         self.scrollAreaBibliotheque.setObjectName("scrollAreaBibliotheque")
         self.scrollAreaBibliothequeWidgetContent = QtWidgets.QWidget()
-        self.scrollAreaBibliothequeWidgetContent.setGeometry(QtCore.QRect(0, 0, 844, 617))
+        self.scrollAreaBibliothequeWidgetContent.setGeometry(QtCore.QRect(0, 0, 66, 38))
         self.scrollAreaBibliothequeWidgetContent.setObjectName("scrollAreaBibliothequeWidgetContent")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaBibliothequeWidgetContent)
         self.gridLayout.setObjectName("gridLayout")
@@ -387,9 +401,9 @@ class Ui_MainWindow(object):
         self.searchLineEdit.setPlaceholderText(_translate("MainWindow", "Tapez un nom de livre ici..."))
         self.bookDetaillRetourButton.setText(_translate("MainWindow", "Retour"))
         self.labelRecommendations.setText(_translate("MainWindow", "Recommendations"))
-        self.labelRecommendationParGenre.setText(_translate("MainWindow", "Recommendation par genres :"))
-        self.label.setText(_translate("MainWindow", "Recommendations par auteurs :"))
         self.labelBlague.setText(_translate("MainWindow", "Blague du jour :"))
         self.buttonBlague.setText(_translate("MainWindow", "Une autre !"))
+        self.buttonRecommendationGenre.setText(_translate("MainWindow", "Recommendations par genre"))
+        self.buttonRecommendationAuteur.setText(_translate("MainWindow", "Recommendations par auteurs"))
         self.bibliothequeLabel.setText(_translate("MainWindow", "Bibliothèque"))
 import ressources_rc

@@ -53,10 +53,10 @@ class MainWindow:
         return self.ui
 
     def showHome(self): # Recommendations
-        self.getRandomComic()
-        QApplication.processEvents()
-        self.rol.recommendationGenre()
-        QApplication.processEvents()
+        # self.getRandomComic()
+        # QApplication.processEvents()
+        # self.rol.recommendationGenre()
+        # QApplication.processEvents()
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)
 
     def showSearch(self):

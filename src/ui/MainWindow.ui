@@ -459,123 +459,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QWidget" name="widgetRecommendationGenre" native="true">
-            <layout class="QVBoxLayout" name="verticalLayout_12">
-             <item>
-              <widget class="QLabel" name="labelRecommendationParGenre">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Recommendation par genres :</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QScrollArea" name="scrollAreaRecommendationGenre">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>150</height>
-                </size>
-               </property>
-               <property name="widgetResizable">
-                <bool>true</bool>
-               </property>
-               <widget class="QWidget" name="scrollAreaRecommendationGenreContent">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>826</width>
-                  <height>145</height>
-                 </rect>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_4"/>
-               </widget>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
           <item row="2" column="0">
-           <widget class="QWidget" name="widgetRecommendationParAuteur" native="true">
-            <layout class="QVBoxLayout" name="verticalLayout_11">
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Recommendations par auteurs :</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QWidget" name="widgetCrollAreaRecommendationAuteur" native="true">
-               <layout class="QHBoxLayout" name="horizontalLayout_3">
-                <item>
-                 <widget class="QScrollArea" name="scrollAreaRecommendationAuteur">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>150</height>
-                   </size>
-                  </property>
-                  <property name="widgetResizable">
-                   <bool>true</bool>
-                  </property>
-                  <widget class="QWidget" name="scrollAreaRecommendationAuteurContent">
-                   <property name="geometry">
-                    <rect>
-                     <x>0</x>
-                     <y>0</y>
-                     <width>808</width>
-                     <height>128</height>
-                    </rect>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_3"/>
-                  </widget>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="3" column="0">
            <widget class="QWidget" name="widgetBlague" native="true">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -635,7 +519,7 @@
                      <x>0</x>
                      <y>0</y>
                      <width>602</width>
-                     <height>127</height>
+                     <height>231</height>
                     </rect>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_6">
@@ -699,6 +583,128 @@
             </layout>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QWidget" name="widgetFramesRecommendations" native="true">
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="0" column="0">
+              <widget class="QFrame" name="frameRecommendationGenre">
+               <property name="styleSheet">
+                <string notr="true">QFrame {
+	border: 1px solid #606060;
+	border-radius: 15px;
+	background-color: #323232;
+	margin: 0px 10px opx 10px;
+}
+
+QFrame:hover {
+	border: 2px solid white;
+}</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="0" column="0">
+                 <widget class="QPushButton" name="buttonRecommendationGenre">
+                  <property name="font">
+                   <font>
+                    <pointsize>16</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	background-color : #323232;
+	border-radius: 15px
+}
+
+QPushButton:hover{
+	background-color : #5a5a5a;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>Recommendations par genre</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../ressources.qrc">
+                    <normaloff>:/images/assets/res/romantic-novel.png</normaloff>:/images/assets/res/romantic-novel.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>50</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QFrame" name="frameRecommendationAuteur">
+               <property name="styleSheet">
+                <string notr="true">QFrame {
+	border: 1px solid #606060;
+	border-radius: 15px;
+	background-color: #323232;
+	margin: 0px 10px opx 10px;
+}
+
+QFrame:hover {
+	border: 2px solid white;
+}</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_7">
+                <item row="0" column="0">
+                 <widget class="QPushButton" name="buttonRecommendationAuteur">
+                  <property name="font">
+                   <font>
+                    <pointsize>16</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	background-color : #323232;
+	border-radius: 15px
+}
+
+QPushButton:hover{
+	background-color : #5a5a5a;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>Recommendations par auteurs</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../ressources.qrc">
+                    <normaloff>:/images/assets/res/writer.png</normaloff>:/images/assets/res/writer.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>50</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
          </layout>
         </widget>
         <widget class="QWidget" name="bibliothequeWidget">
@@ -734,8 +740,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>844</width>
-               <height>617</height>
+               <width>66</width>
+               <height>38</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">

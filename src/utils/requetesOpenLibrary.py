@@ -214,7 +214,7 @@ class RequetesOpenLibrary:
         # avoir un genre aléatoire dans la bibliothèque
         nbLivre = len(self.bib.getListeLivre())
         genre = None
-        while genre == None :
+        while genre == None : # peut bugguer si tombe sur un livre avec un genre = None
             livreRandom = self.bib.getListeLivre()[random.randint(0, nbLivre-1)]
             genre = livreRandom.getGenre()[random.randint(0, len(livreRandom.getGenre())-1)]
 

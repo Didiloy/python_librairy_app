@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="images">
+    <file>../assets/res/writer.png</file>
+    <file>../assets/res/romantic-novel.png</file>
     <file>../assets/res/addBook.png</file>
     <file>../assets/res/trash.png</file>
     <file>../assets/res/turn-left.png</file>
