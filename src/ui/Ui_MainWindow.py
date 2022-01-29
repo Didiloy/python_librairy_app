@@ -17,17 +17,19 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.leftPanel = QtWidgets.QWidget(self.centralwidget)
         self.leftPanel.setMinimumSize(QtCore.QSize(210, 0))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.leftPanel.setFont(font)
-        self.leftPanel.setStyleSheet("")
+        self.leftPanel.setStyleSheet("background-color : #464646;")
         self.leftPanel.setObjectName("leftPanel")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.leftPanel)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frameLeftPanel = QtWidgets.QFrame(self.leftPanel)
+        self.frameLeftPanel.setStyleSheet("background-color : #464646;")
         self.frameLeftPanel.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frameLeftPanel.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frameLeftPanel.setObjectName("frameLeftPanel")
@@ -43,7 +45,7 @@ class Ui_MainWindow(object):
         self.leftPanelButtonSearch.setStyleSheet("QPushButton {\n"
 "    border: none;\n"
 "    border-radius : 0px;\n"
-"    border-left: 3px solid #323232;\n"
+"    border-left: 3px solid #464646;\n"
 "    text-align: left;\n"
 "    padding-left: 10px;\n"
 "}\n"
@@ -54,6 +56,10 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"    border-left: 3px solid #323232;\n"
 "}\n"
 "\n"
 "")
@@ -71,7 +77,7 @@ class Ui_MainWindow(object):
         self.leftPanelButtonHome.setStyleSheet("QPushButton {\n"
 "    border: none;\n"
 "    border-radius : 0px;\n"
-"    border-left: 3px solid #323232;\n"
+"    border-left: 3px solid #464646;\n"
 "    text-align: left;\n"
 "    padding-left: 10px;\n"
 "}\n"
@@ -82,6 +88,10 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"    border-left: 3px solid #323232;\n"
 "}\n"
 "\n"
 "")
@@ -99,7 +109,7 @@ class Ui_MainWindow(object):
         self.leftPanelButtonBibliotheque.setStyleSheet("QPushButton {\n"
 "    border: none;\n"
 "    border-radius : 0px;\n"
-"    border-left: 3px solid #323232;\n"
+"    border-left: 3px solid #464646;\n"
 "    text-align: left;\n"
 "    padding-left: 10px;\n"
 "}\n"
@@ -110,6 +120,10 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"    border-left: 3px solid #323232;\n"
 "}\n"
 "\n"
 "")
@@ -385,7 +399,7 @@ class Ui_MainWindow(object):
         self.scrollAreaLabelImageBlague.setWidgetResizable(True)
         self.scrollAreaLabelImageBlague.setObjectName("scrollAreaLabelImageBlague")
         self.scrollAreaLabelImageBlagueWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaLabelImageBlagueWidgetContents.setGeometry(QtCore.QRect(0, 0, 562, 266))
+        self.scrollAreaLabelImageBlagueWidgetContents.setGeometry(QtCore.QRect(0, 0, 580, 284))
         self.scrollAreaLabelImageBlagueWidgetContents.setObjectName("scrollAreaLabelImageBlagueWidgetContents")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.scrollAreaLabelImageBlagueWidgetContents)
         self.gridLayout_6.setObjectName("gridLayout_6")
@@ -465,7 +479,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Bibliothèque"))
         self.leftPanelButtonSearch.setText(_translate("MainWindow", "Rechercher"))
         self.leftPanelButtonHome.setText(_translate("MainWindow", "Recommendations"))
         self.leftPanelButtonBibliotheque.setText(_translate("MainWindow", "Bibliothèque"))
