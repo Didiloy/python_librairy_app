@@ -35,47 +35,92 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem)
         self.leftPanelButtonSearch = QtWidgets.QPushButton(self.frameLeftPanel)
         self.leftPanelButtonSearch.setMinimumSize(QtCore.QSize(0, 50))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.leftPanelButtonSearch.setFont(font)
+        self.leftPanelButtonSearch.setStyleSheet("QPushButton {\n"
+"    border: none;\n"
+"    border-radius : 0px;\n"
+"    border-left: 3px solid #323232;\n"
+"    text-align: left;\n"
+"    padding-left: 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    border-left: 3px solid #848484;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/images/assets/res/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.leftPanelButtonSearch.setIcon(icon)
         self.leftPanelButtonSearch.setIconSize(QtCore.QSize(25, 25))
         self.leftPanelButtonSearch.setObjectName("leftPanelButtonSearch")
         self.verticalLayout_2.addWidget(self.leftPanelButtonSearch)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
-        self.verticalLayout_2.addItem(spacerItem1)
         self.leftPanelButtonHome = QtWidgets.QPushButton(self.frameLeftPanel)
         self.leftPanelButtonHome.setMinimumSize(QtCore.QSize(0, 50))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.leftPanelButtonHome.setFont(font)
+        self.leftPanelButtonHome.setStyleSheet("QPushButton {\n"
+"    border: none;\n"
+"    border-radius : 0px;\n"
+"    border-left: 3px solid #323232;\n"
+"    text-align: left;\n"
+"    padding-left: 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    border-left: 3px solid #848484;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/images/assets/res/recommendation.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.leftPanelButtonHome.setIcon(icon1)
         self.leftPanelButtonHome.setIconSize(QtCore.QSize(25, 25))
         self.leftPanelButtonHome.setObjectName("leftPanelButtonHome")
         self.verticalLayout_2.addWidget(self.leftPanelButtonHome)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
-        self.verticalLayout_2.addItem(spacerItem2)
         self.leftPanelButtonBibliotheque = QtWidgets.QPushButton(self.frameLeftPanel)
         self.leftPanelButtonBibliotheque.setMinimumSize(QtCore.QSize(0, 50))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.leftPanelButtonBibliotheque.setFont(font)
+        self.leftPanelButtonBibliotheque.setStyleSheet("QPushButton {\n"
+"    border: none;\n"
+"    border-radius : 0px;\n"
+"    border-left: 3px solid #323232;\n"
+"    text-align: left;\n"
+"    padding-left: 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    border-left: 3px solid #848484;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/images/assets/res/bookshelf.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.leftPanelButtonBibliotheque.setIcon(icon2)
         self.leftPanelButtonBibliotheque.setIconSize(QtCore.QSize(25, 25))
         self.leftPanelButtonBibliotheque.setObjectName("leftPanelButtonBibliotheque")
         self.verticalLayout_2.addWidget(self.leftPanelButtonBibliotheque)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem3)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem)
         self.verticalLayout.addWidget(self.frameLeftPanel)
         self.horizontalLayout.addWidget(self.leftPanel)
         self.centerPanel = QtWidgets.QVBoxLayout()
@@ -97,13 +142,13 @@ class Ui_MainWindow(object):
         self.searchButton.setIconSize(QtCore.QSize(20, 20))
         self.searchButton.setObjectName("searchButton")
         self.gridLayoutSearchBar.addWidget(self.searchButton, 0, 2, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayoutSearchBar.addItem(spacerItem4, 0, 0, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayoutSearchBar.addItem(spacerItem1, 0, 0, 1, 1)
         self.searchLineEdit = QtWidgets.QLineEdit(self.searchWidget)
         self.searchLineEdit.setObjectName("searchLineEdit")
         self.gridLayoutSearchBar.addWidget(self.searchLineEdit, 0, 1, 1, 1)
-        spacerItem5 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayoutSearchBar.addItem(spacerItem5, 0, 3, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayoutSearchBar.addItem(spacerItem2, 0, 3, 1, 1)
         self.gridLayoutSearchWidget.addLayout(self.gridLayoutSearchBar, 0, 0, 1, 1)
         self.scrollAreaSearch = QtWidgets.QScrollArea(self.searchWidget)
         self.scrollAreaSearch.setWidgetResizable(True)
@@ -405,8 +450,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.gridLayout.addWidget(self.widget, 0, 1, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem6, 0, 0, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem3, 0, 0, 1, 1)
         self.scrollAreaBibliotheque.setWidget(self.scrollAreaBibliothequeWidgetContent)
         self.verticalLayout_3.addWidget(self.scrollAreaBibliotheque)
         self.stackedWidget.addWidget(self.bibliothequeWidget)
