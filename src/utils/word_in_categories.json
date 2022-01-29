@@ -6,7 +6,7 @@
     "Thriller": ["enqueteur","tueur","loupe","gold","surveiller","garde","eloigne","étrange" ,"enquete", "police", "coupable", "criminel", "landes", "foret", "mobile", "minuit", "soir", "histoire", "mystère", "effroit", "suspect"],
     "Superheroes": [],
     "Mystery": ["mystère", "affaire", "résolu", "résolution", "enquete"],
-    "Juvenile Fiction": ["mission", "code"],
+    "Juvenile Fiction": ["police","tueur","mur","murs","olympe","dieu","dieux","fusée","aventure","ange","démon","magie","mission", "code"],
     "Adult": ["sexe", "pornographie", "aventure", "prostitution"],
     "Crime": ["enqueteur","tueur","loupe","gold","surveiller","garde","eloigne","étrange" ,"enquete", "police", "coupable", "criminel", "landes", "foret", "mobile", "minuit", "soir", "histoire", "mystère", "effroit", "suspect"],
     "Comics": [],
@@ -15,5 +15,6 @@
     "Science": ["code","mission","ferroviaire","train","aérien","transport","automobile","auto","infini","petit","grand","cuivre","or","banque","argent","astronomie","astronome","space","spatial","poisson","marine","marin","sous-marin","bateau","magma","volcan","éruption","vésuve","stromboli","tempete","ouragant","tornade","hurricain","feu","vent","insecte","fleur","extra-terrestre","vie","aviation","avion","fusée","astre","firmament","découverte", "analyse", "nature", "science", "air", "mer", "loupe","voyage", "espace", "étoile", "monde", "terre", "planete"],
     "Horror": ["halloween","toussaint","sanguinaire","sanglant","silence", "sang", "cri", "clown", "peur", "pantin", "fantome", "revenant", "ghost"],
     "Children": ["adolescence","comptine","chanson","grand-mère","grand-père","fratrie","soeur","frère","mère","père","mamie","papy","jouer", "poupée", "vélo", "dessin", "ballon", "foot", "arcade", "aventure", "plage", "montagne", "rivière", "chien", "chat", "école", "maison", "animal", "trotinette"],
-    "Biographies": ["problématique","problème","problèmes","pertinent","pensée","pacte","vérité","serment","sensibilisation","sensible","moi", "vie", "je", "égo", "raconter", "aventure", "analyse", "auto", "leçon", "histoire", "témoignage"]
+    "Biographies": ["problématique","problème","problèmes","pertinent","pensée","pacte","vérité","serment","sensibilisation","sensible","moi", "vie", "je", "égo", "raconter", "aventure", "analyse", "auto", "leçon", "histoire", "témoignage"],
+    "Young Adult Fiction": ["halloween","toussaint","sanguinaire","sanglant","silence", "sang", "cri", "clown", "peur", "pantin", "fantome", "revenant", "ghost","mystère", "affaire", "résolu", "résolution", "enquete","enqueteur","tueur","loupe","gold","surveiller","garde","eloigne","étrange" ,"enquete", "police", "coupable", "criminel", "landes", "foret", "mobile", "minuit", "soir", "histoire", "mystère", "effroit", "suspect"]
 }
