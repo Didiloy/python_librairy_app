@@ -219,20 +219,16 @@ class RequetesOpenLibrary:
             genre = livreRandom.getGenre()[random.randint(0, len(livreRandom.getGenre())-1)]
 
         titre = livreRandom.getTitre()
-        print(titre)
         liste_mots_titre = []
         for mot in titre.split() : # Pour chaque mot du titre je vérifie si il est supérieur a 3 et si oui je l'ajoute a la liste
             if len(mot) > 3 :
-                print(mot)
                 liste_mots_titre.append(mot)
 
         print(livreRandom.toString())
-        # print(livreRandom.getGenre())
         print(f"genre: {genre}")
 
         # #Vérifier si j'ai des mots pour ce genre
         if genre in dataInJson and dataInJson[genre] != None : # Si ça existe dans le fichier word_in_categories.json
-            print(dataInJson[genre])
             if len(liste_mots_titre) > 0 :
                 for mot in liste_mots_titre : # si un mot du titre n'est pas dans la liste de mots du fichier json je l'ajoute
                     if mot not in dataInJson[genre] :
@@ -243,11 +239,9 @@ class RequetesOpenLibrary:
             print(motRandom)
             response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{motRandom}&subject:{genre}')
         else : # Si j'en ai pas je fait juste une recherche du genre
-            print("pas présent")
             response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=subject:{genre}')
 
         # Gérer l'affichage
-        # response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{motRandom}&subject:{genre}')
         liste_livre = []
         i = 0
         hasCover = False
@@ -273,48 +267,54 @@ class RequetesOpenLibrary:
         row = 0
         col = 0
         for livre in liste_livre:
-            QApplication.processEvents()
-            widget = QtWidgets.QWidget(self.ui.scrollAreaRecommendationGenre)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
-            widget.setObjectName(f"widgetScrollArearecommendationGenre{row}{col}")
-            verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
-            verticalLayout.setObjectName(f"verticalLayoutRecommendationGenre_{row}{col}")
-            label_cover_livre = QLabel(widget)
-            imgNotFound = os.path.join("..", "assets", "img", "image_not_found.png")
-            pixmapImgNotFound = QPixmap(imgNotFound)
-            pixmapImgNotFound = pixmapImgNotFound.scaled(80, 120)
+            inBib = False
+            for livreInBib in self.bib.getListeLivre(): # Je vérifie si le livre n'est pas dans ma bibliothèque
+                if livreInBib.getTitre() == livre.getTitre() :
+                    inBib = True
+                    break
+            if not inBib : # Si le livre n'est pas déjà dans ma bibliothèque
+                QApplication.processEvents()
+                widget = QtWidgets.QWidget(self.ui.scrollAreaRecommendationGenre)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
+                widget.setObjectName(f"widgetScrollArearecommendationGenre{row}{col}")
+                verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
+                verticalLayout.setObjectName(f"verticalLayoutRecommendationGenre_{row}{col}")
+                label_cover_livre = QLabel(widget)
+                imgNotFound = os.path.join("..", "assets", "img", "image_not_found.png")
+                pixmapImgNotFound = QPixmap(imgNotFound)
+                pixmapImgNotFound = pixmapImgNotFound.scaled(80, 120)
 
-            if livre.coverId != None:
-                url = livre.getCoverLink()
-                data = urllib.request.urlopen(url).read()
-                pixmap = QPixmap()
-                pixmap.loadFromData(data)
-                pixmap = pixmap.scaled(80, 120)
-                label_cover_livre.setPixmap(pixmap)
-            else:
-                label_cover_livre.setPixmap(pixmapImgNotFound)
-            verticalLayout.addWidget(label_cover_livre)
+                if livre.coverId != None:
+                    url = livre.getCoverLink()
+                    data = urllib.request.urlopen(url).read()
+                    pixmap = QPixmap()
+                    pixmap.loadFromData(data)
+                    pixmap = pixmap.scaled(80, 120)
+                    label_cover_livre.setPixmap(pixmap)
+                else:
+                    label_cover_livre.setPixmap(pixmapImgNotFound)
+                verticalLayout.addWidget(label_cover_livre)
 
-            label_livre = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre du livre
-            label_livre.setObjectName(f"{livre.getTitre()}")
-            label_livre.setGeometry(100, 150, 50, 50)
-            label_livre.setAlignment(Qt.AlignCenter)
-            label_livre.setWordWrap(True)
+                label_livre = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre du livre
+                label_livre.setObjectName(f"{livre.getTitre()}")
+                label_livre.setGeometry(100, 150, 50, 50)
+                label_livre.setAlignment(Qt.AlignCenter)
+                label_livre.setWordWrap(True)
 
-            label_auteur = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre de l'auteur
-            label_auteur.setObjectName(f"auteur{row}{col}")
-            label_auteur.setGeometry(100, 150, 50, 50)
-            label_auteur.setAlignment(Qt.AlignCenter)
-            label_auteur.setWordWrap(True)
+                label_auteur = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre de l'auteur
+                label_auteur.setObjectName(f"auteur{row}{col}")
+                label_auteur.setGeometry(100, 150, 50, 50)
+                label_auteur.setAlignment(Qt.AlignCenter)
+                label_auteur.setWordWrap(True)
 
-            label_livre.setText(f"{livre.getTitre()}")
-            if livre.getHasAuthor() == True:
-                label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
-            verticalLayout.addWidget(label_livre)
-            verticalLayout.addWidget(label_auteur)
+                label_livre.setText(f"{livre.getTitre()}")
+                if livre.getHasAuthor() == True:
+                    label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
+                verticalLayout.addWidget(label_livre)
+                verticalLayout.addWidget(label_auteur)
 
-            self.ui.gridLayout_4.addWidget(widget, row, col)
-            col += 1
-            QApplication.processEvents()
+                self.ui.gridLayout_4.addWidget(widget, row, col)
+                col += 1
+                QApplication.processEvents()
 
         #sauvegarder les nouveaux mots dans le fichier word_in_categories.json
         dataToSave = {}  # dictionnaire pour ecrire au format json
