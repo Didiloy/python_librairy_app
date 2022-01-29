@@ -207,71 +207,13 @@ class Ui_MainWindow(object):
         self.labelRecommendations.setFont(font)
         self.labelRecommendations.setObjectName("labelRecommendations")
         self.gridlayout_10.addWidget(self.labelRecommendations, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
-        self.widgetBlague = QtWidgets.QWidget(self.homeWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.widgetBlague.sizePolicy().hasHeightForWidth())
-        self.widgetBlague.setSizePolicy(sizePolicy)
-        self.widgetBlague.setMinimumSize(QtCore.QSize(0, 0))
-        self.widgetBlague.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.widgetBlague.setObjectName("widgetBlague")
-        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.widgetBlague)
-        self.verticalLayout_13.setObjectName("verticalLayout_13")
-        self.labelBlague = QtWidgets.QLabel(self.widgetBlague)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelBlague.sizePolicy().hasHeightForWidth())
-        self.labelBlague.setSizePolicy(sizePolicy)
-        self.labelBlague.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.labelBlague.setObjectName("labelBlague")
-        self.verticalLayout_13.addWidget(self.labelBlague)
-        self.widget_2 = QtWidgets.QWidget(self.widgetBlague)
-        self.widget_2.setObjectName("widget_2")
-        self.gridLayout_5 = QtWidgets.QGridLayout(self.widget_2)
-        self.gridLayout_5.setObjectName("gridLayout_5")
-        self.scrollAreaLabelImageBlague = QtWidgets.QScrollArea(self.widget_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.scrollAreaLabelImageBlague.sizePolicy().hasHeightForWidth())
-        self.scrollAreaLabelImageBlague.setSizePolicy(sizePolicy)
-        self.scrollAreaLabelImageBlague.setWidgetResizable(True)
-        self.scrollAreaLabelImageBlague.setObjectName("scrollAreaLabelImageBlague")
-        self.scrollAreaLabelImageBlagueWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaLabelImageBlagueWidgetContents.setGeometry(QtCore.QRect(0, 0, 602, 231))
-        self.scrollAreaLabelImageBlagueWidgetContents.setObjectName("scrollAreaLabelImageBlagueWidgetContents")
-        self.gridLayout_6 = QtWidgets.QGridLayout(self.scrollAreaLabelImageBlagueWidgetContents)
-        self.gridLayout_6.setObjectName("gridLayout_6")
-        self.labelImageBlague = QtWidgets.QLabel(self.scrollAreaLabelImageBlagueWidgetContents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelImageBlague.sizePolicy().hasHeightForWidth())
-        self.labelImageBlague.setSizePolicy(sizePolicy)
-        self.labelImageBlague.setMinimumSize(QtCore.QSize(0, 0))
-        self.labelImageBlague.setText("")
-        self.labelImageBlague.setObjectName("labelImageBlague")
-        self.gridLayout_6.addWidget(self.labelImageBlague, 0, 0, 1, 1)
-        self.scrollAreaLabelImageBlague.setWidget(self.scrollAreaLabelImageBlagueWidgetContents)
-        self.gridLayout_5.addWidget(self.scrollAreaLabelImageBlague, 2, 0, 1, 1)
-        self.buttonBlague = QtWidgets.QPushButton(self.widget_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.buttonBlague.sizePolicy().hasHeightForWidth())
-        self.buttonBlague.setSizePolicy(sizePolicy)
-        self.buttonBlague.setMinimumSize(QtCore.QSize(200, 0))
-        self.buttonBlague.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.buttonBlague.setAutoDefault(False)
-        self.buttonBlague.setDefault(False)
-        self.buttonBlague.setFlat(False)
-        self.buttonBlague.setObjectName("buttonBlague")
-        self.gridLayout_5.addWidget(self.buttonBlague, 2, 1, 1, 1, QtCore.Qt.AlignBottom)
-        self.verticalLayout_13.addWidget(self.widget_2)
-        self.gridlayout_10.addWidget(self.widgetBlague, 2, 0, 1, 1)
         self.widgetFramesRecommendations = QtWidgets.QWidget(self.homeWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widgetFramesRecommendations.sizePolicy().hasHeightForWidth())
+        self.widgetFramesRecommendations.setSizePolicy(sizePolicy)
+        self.widgetFramesRecommendations.setMaximumSize(QtCore.QSize(3000, 250))
         self.widgetFramesRecommendations.setObjectName("widgetFramesRecommendations")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.widgetFramesRecommendations)
         self.gridLayout_3.setObjectName("gridLayout_3")
@@ -279,7 +221,7 @@ class Ui_MainWindow(object):
         self.frameRecommendationGenre.setStyleSheet("QFrame {\n"
 "    border: 1px solid #606060;\n"
 "    border-radius: 15px;\n"
-"    background-color: #323232;\n"
+"    background-color: #9388b1;\n"
 "    margin: 0px 10px opx 10px;\n"
 "}\n"
 "\n"
@@ -298,12 +240,12 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.buttonRecommendationGenre.setFont(font)
         self.buttonRecommendationGenre.setStyleSheet("QPushButton{\n"
-"    background-color : #323232;\n"
+"    background-color : #9388b1;\n"
 "    border-radius: 15px\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    background-color : #5a5a5a;\n"
+"    background-color : #b8aade;\n"
 "}")
         icon4 = QtGui.QIcon()
         icon4.addPixmap(QtGui.QPixmap(":/images/assets/res/romantic-novel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -316,7 +258,7 @@ class Ui_MainWindow(object):
         self.frameRecommendationAuteur.setStyleSheet("QFrame {\n"
 "    border: 1px solid #606060;\n"
 "    border-radius: 15px;\n"
-"    background-color: #323232;\n"
+"    background-color: #2A6212;\n"
 "    margin: 0px 10px opx 10px;\n"
 "}\n"
 "\n"
@@ -335,12 +277,12 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.buttonRecommendationAuteur.setFont(font)
         self.buttonRecommendationAuteur.setStyleSheet("QPushButton{\n"
-"    background-color : #323232;\n"
+"    background-color : #2A6212;\n"
 "    border-radius: 15px\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    background-color : #5a5a5a;\n"
+"    background-color : #548141;\n"
 "}")
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap(":/images/assets/res/writer.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -350,6 +292,90 @@ class Ui_MainWindow(object):
         self.gridLayout_7.addWidget(self.buttonRecommendationAuteur, 0, 0, 1, 1)
         self.gridLayout_3.addWidget(self.frameRecommendationAuteur, 0, 1, 1, 1)
         self.gridlayout_10.addWidget(self.widgetFramesRecommendations, 1, 0, 1, 1)
+        self.frameBlague = QtWidgets.QFrame(self.homeWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frameBlague.sizePolicy().hasHeightForWidth())
+        self.frameBlague.setSizePolicy(sizePolicy)
+        self.frameBlague.setMinimumSize(QtCore.QSize(0, 0))
+        self.frameBlague.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.frameBlague.setStyleSheet("QFrame {\n"
+"    border: 1px solid #606060;\n"
+"    border-radius: 15px;\n"
+"    background-color: #323232;\n"
+"    margin: 0px 10px opx 10px;\n"
+"}\n"
+"\n"
+"QFrame:hover {\n"
+"    border: 2px solid white;\n"
+"}")
+        self.frameBlague.setObjectName("frameBlague")
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frameBlague)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.labelBlague = QtWidgets.QLabel(self.frameBlague)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelBlague.sizePolicy().hasHeightForWidth())
+        self.labelBlague.setSizePolicy(sizePolicy)
+        self.labelBlague.setMaximumSize(QtCore.QSize(16777215, 30))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.labelBlague.setFont(font)
+        self.labelBlague.setStyleSheet("border: none;")
+        self.labelBlague.setObjectName("labelBlague")
+        self.verticalLayout_13.addWidget(self.labelBlague, 0, QtCore.Qt.AlignHCenter)
+        self.widget_2 = QtWidgets.QWidget(self.frameBlague)
+        self.widget_2.setObjectName("widget_2")
+        self.gridLayout_5 = QtWidgets.QGridLayout(self.widget_2)
+        self.gridLayout_5.setObjectName("gridLayout_5")
+        self.scrollAreaLabelImageBlague = QtWidgets.QScrollArea(self.widget_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrollAreaLabelImageBlague.sizePolicy().hasHeightForWidth())
+        self.scrollAreaLabelImageBlague.setSizePolicy(sizePolicy)
+        self.scrollAreaLabelImageBlague.setStyleSheet("border: none;")
+        self.scrollAreaLabelImageBlague.setWidgetResizable(True)
+        self.scrollAreaLabelImageBlague.setObjectName("scrollAreaLabelImageBlague")
+        self.scrollAreaLabelImageBlagueWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaLabelImageBlagueWidgetContents.setGeometry(QtCore.QRect(0, 0, 562, 266))
+        self.scrollAreaLabelImageBlagueWidgetContents.setObjectName("scrollAreaLabelImageBlagueWidgetContents")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.scrollAreaLabelImageBlagueWidgetContents)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.labelImageBlague = QtWidgets.QLabel(self.scrollAreaLabelImageBlagueWidgetContents)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelImageBlague.sizePolicy().hasHeightForWidth())
+        self.labelImageBlague.setSizePolicy(sizePolicy)
+        self.labelImageBlague.setMinimumSize(QtCore.QSize(0, 0))
+        self.labelImageBlague.setStyleSheet("border: none;")
+        self.labelImageBlague.setText("")
+        self.labelImageBlague.setObjectName("labelImageBlague")
+        self.gridLayout_6.addWidget(self.labelImageBlague, 0, 0, 1, 1)
+        self.scrollAreaLabelImageBlague.setWidget(self.scrollAreaLabelImageBlagueWidgetContents)
+        self.gridLayout_5.addWidget(self.scrollAreaLabelImageBlague, 2, 0, 1, 1)
+        self.buttonBlague = QtWidgets.QPushButton(self.widget_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.buttonBlague.sizePolicy().hasHeightForWidth())
+        self.buttonBlague.setSizePolicy(sizePolicy)
+        self.buttonBlague.setMinimumSize(QtCore.QSize(200, 0))
+        self.buttonBlague.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/images/assets/res/cycle.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.buttonBlague.setIcon(icon6)
+        self.buttonBlague.setIconSize(QtCore.QSize(20, 20))
+        self.buttonBlague.setAutoDefault(False)
+        self.buttonBlague.setDefault(False)
+        self.buttonBlague.setFlat(False)
+        self.buttonBlague.setObjectName("buttonBlague")
+        self.gridLayout_5.addWidget(self.buttonBlague, 2, 1, 1, 1, QtCore.Qt.AlignBottom)
+        self.verticalLayout_13.addWidget(self.widget_2)
+        self.gridlayout_10.addWidget(self.frameBlague, 2, 0, 1, 1)
         self.stackedWidget.addWidget(self.homeWidget)
         self.bibliothequeWidget = QtWidgets.QWidget()
         self.bibliothequeWidget.setStyleSheet("")
@@ -370,7 +396,7 @@ class Ui_MainWindow(object):
         self.scrollAreaBibliotheque.setWidgetResizable(True)
         self.scrollAreaBibliotheque.setObjectName("scrollAreaBibliotheque")
         self.scrollAreaBibliothequeWidgetContent = QtWidgets.QWidget()
-        self.scrollAreaBibliothequeWidgetContent.setGeometry(QtCore.QRect(0, 0, 66, 38))
+        self.scrollAreaBibliothequeWidgetContent.setGeometry(QtCore.QRect(0, 0, 844, 617))
         self.scrollAreaBibliothequeWidgetContent.setObjectName("scrollAreaBibliothequeWidgetContent")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaBibliothequeWidgetContent)
         self.gridLayout.setObjectName("gridLayout")
@@ -389,6 +415,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -401,9 +428,9 @@ class Ui_MainWindow(object):
         self.searchLineEdit.setPlaceholderText(_translate("MainWindow", "Tapez un nom de livre ici..."))
         self.bookDetaillRetourButton.setText(_translate("MainWindow", "Retour"))
         self.labelRecommendations.setText(_translate("MainWindow", "Recommendations"))
-        self.labelBlague.setText(_translate("MainWindow", "Blague du jour :"))
-        self.buttonBlague.setText(_translate("MainWindow", "Une autre !"))
         self.buttonRecommendationGenre.setText(_translate("MainWindow", "Recommendations par genre"))
         self.buttonRecommendationAuteur.setText(_translate("MainWindow", "Recommendations par auteurs"))
+        self.labelBlague.setText(_translate("MainWindow", "Blague du jour"))
+        self.buttonBlague.setText(_translate("MainWindow", "Une autre !"))
         self.bibliothequeLabel.setText(_translate("MainWindow", "Bibliothèque"))
 import ressources_rc
