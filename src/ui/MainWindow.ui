@@ -248,7 +248,7 @@ QPushButton:focus {
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>5</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="searchWidget">
          <property name="styleSheet">
