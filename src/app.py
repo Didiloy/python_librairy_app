@@ -80,20 +80,23 @@ class MainWindow:
         rand = random.randint(1, 2572)
         QApplication.processEvents()
         reponse = requests.get(f'https://xkcd.com/{rand}/info.0.json')
-        QApplication.processEvents()
-        data = json.loads(reponse.text)
-        url = data['img']
-        img = urllib.request.urlopen(url).read()
-        f = urllib.request.urlopen(url)  # avoir les dimensions de l'image
-        with Image(file=f) as imgf:
-            width = imgf.width
-            height = imgf.height
-            # print(f"width : {width} | height : {height}")
-        pixmap = QPixmap()
-        pixmap.loadFromData(img)
-        pixmap = pixmap.scaled(width, height)
-        QApplication.processEvents()
-        self.ui.labelImageBlague.setPixmap(pixmap)
+        if reponse.status_code == 200 : # si ça c'est bien passé
+            QApplication.processEvents()
+            data = json.loads(reponse.text)
+            url = data['img']
+            img = urllib.request.urlopen(url).read()
+            f = urllib.request.urlopen(url)  # avoir les dimensions de l'image
+            with Image(file=f) as imgf:
+                width = imgf.width
+                height = imgf.height
+                # print(f"width : {width} | height : {height}")
+            pixmap = QPixmap()
+            pixmap.loadFromData(img)
+            pixmap = pixmap.scaled(width, height)
+            QApplication.processEvents()
+            self.ui.labelImageBlague.setPixmap(pixmap)
+        else :
+            self.ui.labelImageBlague.setText("Problème de connexion, Veuillez réessayer")
 
 
     def updateBib(self):
