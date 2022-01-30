@@ -248,7 +248,7 @@ QPushButton:focus {
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>4</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="searchWidget">
          <property name="styleSheet">
@@ -333,8 +333,8 @@ QPushButton:focus {
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>842</width>
-                 <height>586</height>
+                 <width>860</width>
+                 <height>604</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -766,7 +766,7 @@ QFrame:hover {
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
-                   <string>Une autre !</string>
+                   <string>Je veux une blague !</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../ressources.qrc">
@@ -904,6 +904,68 @@ QFrame:hover {
               </item>
               <item row="0" column="0">
                <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Maximum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="recommendationAuteurWidget">
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QLabel" name="recommendationAuteurLabel">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Mes recommandations par auteur</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QScrollArea" name="scrollAreaRecommendationAuteur">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaRecommendationAuteurWidgetContent">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>862</width>
+               <height>635</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="0" column="1">
+               <widget class="QWidget" name="widget_4" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_12"/>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <spacer name="horizontalSpacer_5">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>

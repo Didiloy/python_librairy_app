@@ -39,6 +39,7 @@ class MainWindow:
         self.ui.leftPanelButtonBibliotheque.clicked.connect(self.showBiblio)  # j'ajoute une action au bouton pour afficher le bon panel
         self.ui.buttonBlague.clicked.connect(self.getRandomComic)
         self.ui.buttonRecommendationGenre.clicked.connect(self.showRecommendationGenre)
+        self.ui.buttonRecommendationAuteur.clicked.connect(self.showRecommendationAuteur)
         self.ui.searchButton.clicked.connect(self.search)  # j'ajoute la fonction pour rechercher au bouton
 
         self.showBiblio()
@@ -50,7 +51,7 @@ class MainWindow:
         return self.ui
 
     def showHome(self): # Recommendations
-        self.getRandomComic()
+        # self.getRandomComic()
         QApplication.processEvents()
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeWidget)
         self.currentPanel = self.ui.homeWidget
@@ -61,6 +62,11 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(self.ui.recommendationGenreWidget)
         self.currentPanel = self.ui.recommendationGenreWidget
 
+    def showRecommendationAuteur(self):
+        QApplication.processEvents()
+        self.rol.recommendationAuteur()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.recommendationAuteurWidget)
+        self.currentPanel = self.ui.recommendationAuteurWidget
 
     def showSearch(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.searchWidget)
@@ -97,6 +103,7 @@ class MainWindow:
             self.ui.labelImageBlague.setPixmap(pixmap)
         else :
             self.ui.labelImageBlague.setText("Problème de connexion, Veuillez réessayer")
+        self.ui.buttonBlague.setText("Une autre !")
 
 
     def updateBib(self):

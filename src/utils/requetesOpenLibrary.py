@@ -217,6 +217,7 @@ class RequetesOpenLibrary:
     def recommendationGenre(self):
         # je vais récuperer tout les mots par catégories qui sont dans le fichier word_in_categories.json
         # je vais analyser le titre du livre et le décomposer en mots de plus de 3 lettres
+        #### Je vais faire une recherche avec les mots du titre 1/2 fois et avec les mots dans mes listes
         # si les mots du titre ne sont pas présent dans ma liste je les ajoute et je fait une recherche
         # sinon je fait une recherche avec un des mots
         # j'affiche les résultats
@@ -249,7 +250,10 @@ class RequetesOpenLibrary:
                 for mot in liste_mots_titre : # si un mot du titre n'est pas dans la liste de mots du fichier json je l'ajoute
                     if mot not in dataInJson[genre] :
                         dataInJson[genre].append(mot)
-                motRandom = liste_mots_titre[random.randint(0, len(liste_mots_titre)-1)]
+                if random.randint(0,10)%2 == 0: # On va faire une recherche avec un mot du titre une fois sur deux, sinon avec un mot de ma liste
+                    motRandom = liste_mots_titre[random.randint(0, len(liste_mots_titre)-1)]
+                else :
+                    motRandom = dataInJson[genre][random.randint(0, len(dataInJson[genre]) - 1)]
             else :
                 motRandom = dataInJson[genre][random.randint(0, len(dataInJson[genre]) - 1)]
             print(motRandom)
@@ -373,3 +377,125 @@ class RequetesOpenLibrary:
         with open(wordJsonFile, 'w') as fp:
             json.dump(dataToSave, fp)
         print("saved words in word_in_categories")
+
+    def recommendationAuteur(self):
+        # avoir un auteur aléatoire dans la bibliothèque
+        nbLivre = len(self.bib.getListeLivre())
+        auteur = None
+        while auteur == None : # peut bugguer si tombe sur un livre avec un genre = None
+            livreRandom = self.bib.getListeLivre()[random.randint(0, nbLivre-1)]
+            auteur = livreRandom.getAuthor()
+
+        print(livreRandom.toString())
+        print(f"auteur: {auteur}")
+
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=inauthor:{auteur}')
+
+        if response.status_code == 200 : # Si tout c'est bien passé
+            # Gérer l'affichage
+            liste_livre = []
+            i = 0
+            hasCover = False
+            data = json.loads(response.text)  # Transformer le texte en objet json
+            if 'items' in data and data['items'] != None:
+                for books in data['items'] :
+                    volumeInfo = books['volumeInfo']
+                    if 'imageLinks' in volumeInfo and volumeInfo['imageLinks'] != None:
+                        coversLink = volumeInfo['imageLinks']
+                        hasCover = True
+
+                    liste_livre.append(Livre.Livre(str(volumeInfo['title'])))
+                    if 'authors' in volumeInfo:
+                        if volumeInfo['authors'] != None or volumeInfo['authors'] != []:
+                            liste_livre[i].setAuthor(str(volumeInfo['authors'][0]))
+                            liste_livre[i].setHasAuthor(True)
+                    if hasCover:
+                        liste_livre[i].setCoverID(str(books['id']))
+                        liste_livre[i].setCoverLink(coversLink['thumbnail'])
+                    if 'description' in volumeInfo and volumeInfo['description'] != None : # Si il y a une description
+                        liste_livre[i].setResume(volumeInfo['description'])
+                    i += 1
+                    hasCover = False
+            #####afficher les résultats
+            row = 0
+            col = 0
+            for livre in liste_livre:
+                inBib = False
+                for livreInBib in self.bib.getListeLivre(): # Je vérifie si le livre n'est pas dans ma bibliothèque
+                    if livreInBib.getTitre() == livre.getTitre() :
+                        inBib = True
+                        break
+                if not inBib : # Si le livre n'est pas déjà dans ma bibliothèque
+                    QApplication.processEvents()
+                    # widget = QtWidgets.QWidget(self.ui.scrollAreaRecommendationGenre)  # Je crée un widget qui contiendra la cover du livre, le titre et l'auteur
+                    # widget.setObjectName(f"widgetScrollArearecommendationGenre{row}{col}")
+
+                    widget = QtWidgets.QFrame(self.ui.scrollAreaRecommendationAuteur)
+                    widget.setStyleSheet("QFrame {\n"
+                                                                "    border: none;\n"
+                                                                "    border-radius: 10px;\n"
+                                                                "    background-color: #404040;\n"
+                                                                "    margin: 0px 10px opx 10px;\n"
+                                                                "}\n"
+                                                                "\n"
+                                                                "QFrame:hover {\n"
+                                                                "    border: 1px solid white;\n"
+                                                                "}")
+                    widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+                    widget.setFrameShadow(QtWidgets.QFrame.Raised)
+                    widget.setObjectName(f"widgetScrollArearecommendationAuteur{row}{col}")
+
+                    verticalLayout = QtWidgets.QVBoxLayout(widget)  # Je defini le layout pour contenir les informations du livre
+                    verticalLayout.setObjectName(f"verticalLayoutRecommendationAuteur_{row}{col}")
+                    button_cover_livre = QtWidgets.QPushButton(widget)
+                    button_cover_livre.setStyleSheet("border-style: none; background-color : #404040")
+                    imgNotFound = os.path.join("..", "assets", "img", "image_not_found.png")
+                    pixmapImgNotFound = QPixmap(imgNotFound)
+                    pixmapImgNotFound = pixmapImgNotFound.scaled(80, 120)
+
+                    if livre.coverId != None:
+                        url = livre.getCoverLink()
+                        data = urllib.request.urlopen(url).read()
+                        pixmap = QPixmap()
+                        pixmap.loadFromData(data)
+                        pixmap = pixmap.scaled(100, 140)
+                        button_cover_livre.setIcon(QtGui.QIcon(pixmap))
+                        button_cover_livre.setIconSize(QSize(100, 140))
+                    else:
+                        button_cover_livre.setIcon(QtGui.QIcon(pixmapImgNotFound))
+                        button_cover_livre.setIconSize(QSize(100, 140))
+                    verticalLayout.addWidget(button_cover_livre)
+
+                    label_livre = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre du livre
+                    label_livre.setObjectName(f"{livre.getTitre()}")
+                    label_livre.setGeometry(100, 150, 50, 50)
+                    label_livre.setAlignment(Qt.AlignCenter)
+                    label_livre.setWordWrap(True)
+                    label_livre.setStyleSheet("border : none")
+
+                    label_auteur = QtWidgets.QLabel(widget)  # Je crée le label_cover_livre de l'auteur
+                    label_auteur.setObjectName(f"auteur{row}{col}")
+                    label_auteur.setGeometry(100, 150, 50, 50)
+                    label_auteur.setAlignment(Qt.AlignCenter)
+                    label_auteur.setWordWrap(True)
+                    label_auteur.setStyleSheet("border : none")
+
+                    self.dico_livres_boutons_cover[livre] = button_cover_livre
+
+                    label_livre.setText(f"{livre.getTitre()}")
+                    if livre.getHasAuthor() == True:
+                        label_auteur.setText(f"Auteur : {livre.getAuthor()}")  # Si le livre à un auteur on ajoute son nom
+                    verticalLayout.addWidget(label_livre)
+                    verticalLayout.addWidget(label_auteur)
+
+                    if col < 2:  # je vais vérifer ou nous somme dans la grille
+                        self.ui.gridLayout_9.addWidget(widget, row, col)
+                        col += 1
+                    elif col == 2:  # si la colone  c'est 4 on ajoute et puis on change de ligne
+                        self.ui.gridLayout_9.addWidget(widget, row, col)
+                        col = 0
+                        row += 1
+                    QApplication.processEvents()
+                    self.addBoutonCoverLivreListener()
+        else :
+            self.ui.recommendationAuteurLabel.setText("Problème de connexion")
