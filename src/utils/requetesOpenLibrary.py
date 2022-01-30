@@ -9,13 +9,11 @@ import os
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from PyQt5 import QtWidgets, uic, QtGui, QtCore
+from PyQt5 import QtWidgets, QtGui, QtCore
 import sys
 
 sys.path.append("..") # Adds higher directory to python modules path.
-
-from src.classes import Bibliotheque
-from src.classes import Livre
+from classes import Livre
 
 # lien pour les requetes par genre
 # https://www.googleapis.com/books/v1/volumes?q=subject:mySubject

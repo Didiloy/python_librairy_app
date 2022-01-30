@@ -1,7 +1,7 @@
 import json
 import os
-from classes import Livre
-from classes import Auteur
+from . import Livre
+from . import Auteur
 
 # Utilisation du DP Singleton
 # Il ne peux exister qu'une seule instance de cette classe

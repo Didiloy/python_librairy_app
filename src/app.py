@@ -8,12 +8,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from wand.image import Image
 import requests
-from PyQt5 import QtWidgets, uic, QtGui, QtCore
-from qt_material import apply_stylesheet
-import asyncio
-import time
+from PyQt5 import QtWidgets, QtGui, QtCore
 import sys
-from classes import Livre, Auteur, Bibliotheque
+from classes import Bibliotheque
 from ui import Ui_MainWindow
 import utils.requetesOpenLibrary as rol
 import ressources_rc
